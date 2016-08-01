@@ -257,6 +257,9 @@ a:hover{
   background: white;
   margin-top: 3px;
 }
+.hidden {
+  display: block ! important;
+}
 .title-event{
   font-size: 16px;
   color: #FD5B03;
@@ -407,7 +410,6 @@ a:hover{
         .testimonial.testimonial-danger-filled .testimonial-section{
                 color: #fff;
                 background-color: #FF770B;
-                border-color: #92F22A;
         }
 
             .testimonial.testimonial-danger-filled .testimonial-section:after{

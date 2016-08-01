@@ -4,16 +4,15 @@
 		text-align: left;
 	}
 </style>
-
 <header class="intro-header">
         <div class="container">
             <div class="background" style="background-color: rgba(117, 117, 117, 0.34);"></div>
 			<div class="text col-xs-12 col-md-4 col-sm-4 col-lg-4">
-				<h1 class="h1-title" style="">
+				<h1 class="h1-title no" style="">
 					COWORKING & OFFICE SPACE
 				</h1>
 				<p>&mdash;</p>
-				<p class="p-description">Emerald HUB is the coworking space for freelancers, startups and entrepreneurs in the center of Phnom Penh. </p>
+				<p class="p-description no">Emerald HUB is the coworking space for freelancers, startups and entrepreneurs in the center of Phnom Penh. </p>
 			</div>
         </div>
 </header>
@@ -33,7 +32,7 @@
 							<div class="panel-body text-center">
 								<img src="{{location.feature_image1}}" class="img-responsive" style="width:100%">
 							</div>
-							<ul class="list-group list-group-flush text-center">
+							<ul class="list-group list-group-flush text-center no">
 								<li class="list-group-item">
 									<h3>{{location.title}}</h3>
 								</li>
@@ -58,12 +57,12 @@
 		<hr>
 	  	<div class="row">
 	  		{%for post in posts_top%}
-	  		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 padding">
+	  		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 padding ">
 	  			<a href="/{{post.slug}}">
 		    	<div class="hovereffect">
 		        	<img class="img-responsive" src="{{post.feature_image}}" alt="">
 			        <div class="overlay">
-			           <h2>{{post.title}}</h2>
+			           <h2 class="no">{{post.title}}</h2>
 			        </div>
 		    	</div>
 		    	</a>
@@ -74,7 +73,7 @@
 </section>
 <section class="container-fluid bg-space" style="margin-top:-10px;" id="section4">
 
-	<div class="container" id="events">
+	<div class="container " id="events">
 		{% if events.count > 0 %}
 		<h1 class="v-center">EVENT & COMMUNITY</h1>
 		{%endif%}
@@ -82,7 +81,7 @@
 	  	<!--event -->
 	  	{% for event in events %}
 	  	<div class="col-md-6 col-xs-12">
-	  		<div class="row myrow mybox1 borderight">
+	  		<div class="row myrow mybox1 borderight no">
 				<a href="/{{event.slug}}" target="_blank">
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border" style="padding: 0px;">
 					    <div class="hidden-xs col-sm-2 col-md-2 col-lg-2 mypad ">
@@ -118,7 +117,7 @@
 			<div class="container">
 				<div class="row">
 					{%for member in members%}
-			        <div class="col-sm-6 col-xs-12">
+			        <div class="col-sm-6 col-xs-12 no">
 			            <div id="tb-testimonial" class="testimonial testimonial-danger-filled">
 			                <div class="testimonial-section">
 			                    {{member.detail}}
@@ -146,6 +145,14 @@
 	  	<!--end team-->
 	</div>
 </section>
-
+<!--smooth-->
+  <script type="text/javascript">
+jQuery(document).ready(function() {
+  jQuery('.no').addClass("hidden").viewportChecker({
+      classToAdd: 'visible animated fadeIn', // Class to add to the elements when they are visible
+      offset: 100    
+     });   
+});            
+</script>
 
 {% include template_name+'/footer.html' %} 
