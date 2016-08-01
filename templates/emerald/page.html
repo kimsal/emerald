@@ -1,0 +1,33 @@
+{% include template_name+'/header.html' %} 
+<style type="text/css">
+	p{
+		text-align: left;
+	}
+	h3{
+		font-size: 23px;
+		font-weight: 600;
+		text-align: left;
+		color: #F29B34;
+	}
+	.about p {
+	    font-size: 20px;
+	    padding-bottom: 1em;
+	    text-align: left;
+	    color:black;
+	}
+</style>
+<section class="container-fluid bg-space" >
+	{%for page in page_object%}
+	<div class="container">
+		<div class="hidden-xs col-md-2 col-lg-2 col-sm-2"></div>
+		<div class="col-md-8 col-lg-8 col-sm-8 about">
+		<h1 class="v-center">{{page.title}}</h1>
+		<hr>
+		{{page.description|safe}}
+		</div>
+		<div class="hidden-xs col-md-2 col-lg-2 col-sm-2"></div>
+	</div>
+	{%endfor%}
+</section>
+
+{% include template_name+'/footer.html' %} 

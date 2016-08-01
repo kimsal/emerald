@@ -1,0 +1,29 @@
+{% include template_name+'/header.html' %} 
+<style type="text/css">
+	p{
+		text-align: left;
+	}
+</style>
+<div class="contact">
+	<div class="container">
+		<div class="row">
+      <div class="hidden-xs col-sm-2 col-md-2 col-lg-2">
+        
+      </div>
+      	{%for post in post_object %}
+        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+          <br><br>
+          <h2 style="color:black;">
+          {{post.title}}
+          </h2>
+          
+          {{post.description|safe}}
+        </div>
+        {%endfor%}
+      <div class="hidden-xs col-sm-2 col-md-2 col-lg-2"></div>
+    </div>
+</div>
+</div>
+<br>
+
+{% include template_name+'/footer.html' %} 

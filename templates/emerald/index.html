@@ -1,0 +1,151 @@
+{% include template_name+'/header.html' %} 
+<style type="text/css">
+	p{
+		text-align: left;
+	}
+</style>
+
+<header class="intro-header">
+        <div class="container">
+            <div class="background" style="background-color: rgba(117, 117, 117, 0.34);"></div>
+			<div class="text col-xs-12 col-md-4 col-sm-4 col-lg-4">
+				<h1 class="h1-title" style="">
+					COWORKING & OFFICE SPACE
+				</h1>
+				<p>&mdash;</p>
+				<p class="p-description">Emerald HUB is the coworking space for freelancers, startups and entrepreneurs in the center of Phnom Penh. </p>
+			</div>
+        </div>
+</header>
+<section class="container-fluid bg-space" id="location">
+	<div class="container">
+			<h1 class="v-center">LOCATIONS</h1>
+			<hr>
+
+	  	<div class="row">
+	  		{%for location in locations%}
+	    	<div class="col-xs-12 col-sm-6 col-md-6">
+	          	<div class="row">
+	          		<a href="{{location.slug}}">
+						<div class="panel price panel-red">
+							<div class="panel-heading  text-center">
+							</div>
+							<div class="panel-body text-center">
+								<img src="{{location.feature_image1}}" class="img-responsive" style="width:100%">
+							</div>
+							<ul class="list-group list-group-flush text-center">
+								<li class="list-group-item">
+									<h3>{{location.title}}</h3>
+								</li>
+								<li class="list-group-item">
+									<h5>
+									{{location.address}}
+									</h5>
+								</li>
+							</ul>
+						</div>
+					</a>
+	          	</div>
+	    	</div>
+	    	{%endfor%}
+
+		</div>
+	</div>
+</section>
+<section class="container-fluid bg-space" style="margin-top:-10px;" id="section2">
+	<div class="container">
+		<h1 class="v-center">BLOG</h1>
+		<hr>
+	  	<div class="row">
+	  		{%for post in posts_top%}
+	  		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 padding">
+	  			<a href="/{{post.slug}}">
+		    	<div class="hovereffect">
+		        	<img class="img-responsive" src="{{post.feature_image}}" alt="">
+			        <div class="overlay">
+			           <h2>{{post.title}}</h2>
+			        </div>
+		    	</div>
+		    	</a>
+			</div>
+			{%endfor%}
+		</div>
+	</div>
+</section>
+<section class="container-fluid bg-space" style="margin-top:-10px;" id="section4">
+
+	<div class="container" id="events">
+		{% if events.count > 0 %}
+		<h1 class="v-center">EVENT & COMMUNITY</h1>
+		{%endif%}
+		<hr>
+	  	<!--event -->
+	  	{% for event in events %}
+	  	<div class="col-md-6 col-xs-12">
+	  		<div class="row myrow mybox1 borderight">
+				<a href="/{{event.slug}}" target="_blank">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 border" style="padding: 0px;">
+					    <div class="hidden-xs col-sm-2 col-md-2 col-lg-2 mypad ">
+					    	<img src="{{event.feature_image}}" class="img-responsive" style="padding:0px;margin-top: 13px;">
+					    	<br>
+					    </div>
+					    <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 mypad">
+					    	<h4 class="mytitle">
+					    		{{event.title}}
+					    	</h4>
+					    	<small style="color: #a8a6a6;">
+					    		<i class="fa fa-calendar" aria-hidden="true"></i>
+						    	<!-- /<span >400$</span> -->
+						    	<span>{{event.date}}</span>
+						    </small>
+						    <br>
+					    	<p class="" style="margin-top:5px;text-align:left;">
+					    		{{event.description|safe|truncate(70)}}
+					    	</p>
+					    </div>
+					</div>
+				</a>
+			</div>
+		</div>
+		{%endfor%}
+		<!--end event-->
+		<div class="col-sm-12"></div>
+	  	<!--Team-->
+	  	<div class="row" id="members">
+	  		<h1 class="v-center">MEMBERS</h1>
+			<hr>
+			<!--box for team-->
+			<div class="container">
+				<div class="row">
+					{%for member in members%}
+			        <div class="col-sm-6 col-xs-12">
+			            <div id="tb-testimonial" class="testimonial testimonial-danger-filled">
+			                <div class="testimonial-section">
+			                    {{member.detail}}
+			                </div>
+			                <div class="testimonial-desc">
+			                	{%if member.feature_image==''%}
+			                		 <img src="/static/images/no profile.png" alt="" />
+			                	{%else%}
+				                    <img src="{{member.feature_image
+				                    }}" alt="" />
+			                    {%endif%}
+			                    <div class="testimonial-writer">
+			                    	<div class="testimonial-writer-name">{{member.name}}</div>
+			                    	<div class="testimonial-writer-designation">{{member.possition}}</div>
+			                    	<!-- <a href="#" class="testimonial-writer-company">Touch Base Inc</a> -->
+			                    </div>
+			                </div>
+			            </div>   
+					</div>
+					{%endfor%}
+				</div>
+			</div>
+			<!--end box team-->
+	  	</div>
+	  	<!--end team-->
+	</div>
+</section>
+
+
+{% include template_name+'/footer.html' %} 

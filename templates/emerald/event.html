@@ -1,0 +1,50 @@
+{% include template_name+'/header.html' %} 
+<link rel="stylesheet" type="text/css" href="/static/{{template_name}}/css/single-event.css">
+<style type="text/css">
+	p{
+		text-align: left;
+	}
+</style>
+{%for event in event_object%}
+<div class="container bg-overlay">
+  <div class="row text-center">
+      <br><br><br>
+      <h2><b>
+      {{event.title}}
+      </b></h2>
+  </div>
+</div>
+
+<section class="content-builder">
+  <div class="container">
+      <div class="col-md-2 col-lg-2 hidden-xs col-sm-2">
+
+      </div>
+      <div class="col-md-8 col-lg-8 col-xs-12 col-sm-8">
+          <br><br>
+          <div class="list-group" style="border-radius:0px;">
+            <a href="" class="list-group-item">
+              <h3 class="list-group-item-heading"><b>Date:</b></h3>
+              <br>
+              <p class="list-group-item-text description">
+              {{event.date}}</p>
+            </a>
+           
+
+            <a href="" class="list-group-item">
+              <h3 class="list-group-item-heading"><b>Detail:</b></h3>
+              <br>
+              <div class="list-group-item-text description">
+              {{event.description|safe}}
+              </div>
+            </a>
+          </div>
+          <!--end map-->
+      </div>
+      <div class="col-md-2 col-lg-2 hidden-xs col-sm-2">
+
+      </div>
+  </div>
+</section>
+{%endfor%}
+{% include template_name+'/footer.html' %} 
