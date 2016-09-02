@@ -16,14 +16,35 @@
           <h2 style="color:black;">
           {{post.title}}
           </h2>
-          
+
           {{post.description|safe}}
+
+          <!--grid image post-->
+          <div id="gallery2"></div>
+          <!--end grid image post-->
+
         </div>
-        {%endfor%}
       <div class="hidden-xs col-sm-2 col-md-2 col-lg-2"></div>
     </div>
 </div>
 </div>
 <br>
+<script>
+   var img ="{{post.images}}";
+      var images=img.split("$$$$$");
+      // var temp='';
+      for(var i=0;i<images.length;i++){
+        // alert(i);
+        if(images[1]!='')
+          images[i]="/static/images/images/"+images[i];
+      }
+  $(function() {
+      $('#gallery2').imagesGrid({
+          images: images.slice(0, 5)
+      });
 
+  });
+
+</script>
+{%endfor%}
 {% include template_name+'/footer.html' %} 

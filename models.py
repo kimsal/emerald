@@ -139,16 +139,18 @@ class Post(db.Model):
             slug=self.slug,
             category_id=self.category_id,
             published_at="{}".format(self.published_at),
-            view=self.view
+            view=self.view,
+            images=self.images
             )
-    def __init__(self, title, description, category_id, feature_image, user_id,views=0):
+    def __init__(self, title, description, category_id, feature_image, user_id,images='',views=0):
         self.title = title
         self.slug =slugify(title)
         self.description = description
         self.feature_image = feature_image
         self.category_id = category_id
         self.user_id = user_id
-        self.views=views
+        self.views=views,
+        self.images=images
     def add(post):
         db.session.add(post)
         return db.session.commit()
