@@ -126,6 +126,7 @@ class Post(db.Model):
     feature_image=db.Column(db.Text,nullable=True)
     slug=db.Column(db.String(255),nullable=True,unique=True)
     category_id=db.Column(db.Integer,db.ForeignKey('category.id'),nullable=True)
+    images = db.Column(db.Text,nullable=True)
     user_id=db.Column(db.Integer,db.ForeignKey('user_member.id'))
     published_at=db.Column(db.TIMESTAMP,server_default=db.func.current_timestamp())
     views = db.Column(db.Integer, nullable=True)
@@ -197,12 +198,12 @@ class Location(db.Model):
     def delete(location):
         db.session.delete(location)
         return db.session.commit()
-
 class Email(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(255),unique=True)
-    name  = db.Column(db.String(255),nullable=True)
-    published_at=db.Column(db.TIMESTAMP,server_default=db.func.current_timestamp())
+    email = db.Column(db.String(255), unique=True)
+    name  = db.Column(db.String(255), nullable=True)
+    published_at = db.Column(db.TIMESTAMP,server_default=db.func.current_timestamp())
+    emailgroup=db.relationship('Emailgroup', backref="email", lazy='dynamic')
     def __str__(self):
         return self.name
     def update(self):
@@ -224,7 +225,8 @@ class Email(db.Model):
 class Group(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name  = db.Column(db.String(255))
-    published_at=db.Column(db.TIMESTAMP,server_default=db.func.current_timestamp())
+    published_at = db.Column(db.TIMESTAMP,server_default=db.func.current_timestamp())
+    emailgroups=db.relationship('Emailgroup', backref='"group"', lazy='dynamic')
     def __str__(self):
         return self.name
     # def update(self):
@@ -243,8 +245,8 @@ class Group(db.Model):
         return db.session.commit()
 class Emailgroup(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    email_id  = db.Column(db.Integer)
-    group_id  = db.Column(db.Integer)
+    email_id  = db.Column(db.Integer,db.ForeignKey('email.id'),nullable=True)
+    group_id  = db.Column(db.Integer,db.ForeignKey("group.id"),nullable=True)
     published_at=db.Column(db.TIMESTAMP,server_default=db.func.current_timestamp())
     def __str__(self):
         return self.email_id
@@ -387,16 +389,38 @@ class Partner(db.Model):
     def delete(partner):
         db.session.delete(partner)
         return db.session.commit()
-#need when migrate database 
+class EmailList(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name  = db.Column(db.String(255))
+    email  = db.Column(db.String(255))
+    subject = db.Column(db.String(1000))
+    description = db.Column(db.Text)
+    def __str__(self):
+        return self.name
+    # def update(self):
+    #     return session_commit()    
+    def to_Json(self):
+        return dict(id=self.id,
+            name=self.name,
+            email=self.email,
+            subject = self.subject,
+            description = self.description
+            )
+    def __init__(self,name,email,subject,description):
+        self.name =name,
+        self.email =email,
+        self.subject = subject,
+        self.description = description
+    def add(messagelist):
+        db.session.add(messagelist)
+        return db.session.commit()
+    def delete(messagelist):
+        db.session.delete(messagelist)
+        return db.session.commit()
 if __name__ == '__main__':
     app.secret_key = SECRET_KEY
     app.config['DEBUG'] = True
-    app.config['SESSION_TYPE'] = 'filesystem'
+    # app.config['SESSION_TYPE'] = 'filesystem'
     app.debug = True
     manager.run()
     app.run()
-# @manager.command
-# def init_db():
-#     db.drop_all()
-#     db.create_all()
-#http://techarena51.com/index.php/one-to-many-relationships-with-flask-sqlalchemy/

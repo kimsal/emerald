@@ -13,10 +13,14 @@ import math
 from models import *
 from forms import *
 from models import *
+from random import randint
+import logging
+logging.basicConfig()
 template ="template-2016"
 config=""
 email=''
 password=''
+send_name=''
 with open('config.txt','r') as f:
 	config=str(f.read())
 	data=config.split('\n')
@@ -24,6 +28,7 @@ with open('config.txt','r') as f:
 	limit=int(data[1].split('"')[1])
 	email=data[2].split('"')[1]
 	pwd=data[3].split('"')[1]
+	send_name=data[4].split('"')[1]
 ########## End Configuration ############
 #### send mail ####
 app.config.update(
@@ -730,6 +735,7 @@ def admin_choose_template(new_template):
 			limit=int(data[1].split('"')[1])
 			email=data[2].split('"')[1]
 			pwd=data[3].split('"')[1]
+			send_name=data[4].split('"')[1]
 		flash("Template changed successfully.")
 	except Exception as e:
 		flash(str(e.message))
@@ -759,6 +765,7 @@ def admin_limit(number=0):
 				limit=int(data[1].split('"')[1])
 				email=data[2].split('"')[1]
 				pwd=data[3].split('"')[1]
+				send_name=data[4].split('"')[1]
 			return jsonify({'success':"Ok" })
 		except Exception as e:
 			return jsonify({'success':str(e.message) })
@@ -829,7 +836,26 @@ def verify_email():
 			flash("Sorry, We couldn't find this email to recovery you password. It might wrong email address")
 			return render_template('admin/verify-email.html')
 			return "We couldn't find this email."
+
 ###########SEND MAIL##############
+@app.route('/admin/email/sending')
+@app.route('/admin/email/sending/')
+@app.route('/admin/email/sending/<id>/<action>')
+@app.route('/admin/email/sending/<id>/<action>/')
+def sendingList(id=0,action='none'):
+	email_to_send = EmailList.query.count()
+	if action=='delete':
+		try:
+			ob=EmailList.query.filter_by(id=id).first()
+			status = EmailList.delete(ob)
+			if not status:
+				flash("Email deleted from sending list successfully")
+			else:
+				flash("Error in deleting email from sending list !")
+		except Exception as e:
+			print e.message
+	sendnigEmails = EmailList.query.all()
+	return render_template('/admin/emailsending.html',email_to_send=email_to_send,sendnigEmails=sendnigEmails)
 @app.route('/admin/email/group', methods = ['GET', 'POST'])
 @app.route('/admin/email/group/', methods = ['GET', 'POST'])
 # @app.route('/admin/email/group/<slug>', methods = ['GET', 'POST'])
@@ -841,9 +867,10 @@ def admin_mail_group(slug='',action=''):
 	#slug is group name
 	form = GroupForm()
 	groups=Group.query.order_by(Group.published_at.desc()).all()
+	email_to_send = EmailList.query.count()
 	if slug=='':
 		if request.method=="GET":
-			return render_template("admin/form/mailgroup.html",form=form,groups=groups)
+			return render_template("admin/form/mailgroup.html",email_to_send=email_to_send,name=slug,form=form,groups=groups)
 		else:
 			try:
 				name = request.form['name']
@@ -862,7 +889,7 @@ def admin_mail_group(slug='',action=''):
 		#edit or delete
 		if action=="edit":
 			if request.method=="GET":
-				return render_template("admin/form/mailgroup.html",form=form,groups=groups,name=slug)
+				return render_template("admin/form/mailgroup.html",email_to_send=email_to_send,form=form,groups=groups,name=slug)
 			else:
 				try:
 					obj=Group.query.filter_by(name=slug)
@@ -878,6 +905,12 @@ def admin_mail_group(slug='',action=''):
 				except Exception as e:
 					flash(e.message)
 					return redirect(url_for("admin_mail_group"))
+		elif action=='view':
+			allEmailsInGroup = Emailgroup.query.join(Email).filter(Emailgroup.group_id==slug)
+			# for e in allEmailsInGroup:
+			# 	return str(e.id)
+			group = Group.query.filter_by(id=slug)
+			return render_template("admin/emailInGroup.html",group_object=group,allEmailsInGroup=allEmailsInGroup)
 		else:
 			#delete group
 			try:
@@ -892,20 +925,148 @@ def admin_mail_group(slug='',action=''):
 			except Exception as e:
 				flash(e.message)
 				return redirect(url_for('admin_mail_group'))
+@app.route('/admin/mail/<id>/group/', methods = ['GET', 'POST'])
+@app.route('/admin/mail/<id>/group', methods = ['GET', 'POST'])
+def getEmailByGroupId(id):
+	emails = Emailgroup.query.join(Email,Emailgroup.email_id == Email.id).filter(Emailgroup.group_id==Email.id).all()
+	for email in emails:
+		return str(email)
+	return jsonify({'emails':emails})
 @app.route('/admin/mail', methods = ['GET', 'POST'])
 @app.route('/admin/mail/', methods = ['GET', 'POST'])
+@app.route('/admin/mail/<id>/<action>', methods = ['GET', 'POST'])
+@app.route('/admin/mail/<id>/<action>/', methods = ['GET', 'POST'])
 @auth.login_required
-def admin_mail():
-	if request.method=="GET":
-		return render_template("admin/form/maillist.html")
+def admin_mail(id=0,action=''):
+	email_to_send = EmailList.query.count()
+	emails=Email.query.order_by(Email.id.desc())
+	groups=Group.query.order_by(Group.id.desc())
+	if action=='edit':
+		if request.method=='GET':
+			email=Email.query.filter_by(id=id)
+			return render_template("admin/form/maillist.html",email_to_send=email_to_send,email_object=email,groups=groups,emails=emails)
+		else:
+			obj = Email.query.filter_by(id=id)
+			obj.update({"name" : request.form['name'],'email':request.form['email']})
+		   	status = db.session.commit()
+		   	if not status:
+				flash("Email updated successfully")
+				return redirect(url_for('admin_mail'))
+			else:
+				flash("Error in updating email !")
+				return redirect(url_for('admin_mail'))
+	elif action=='delete':
+		obj=Email.query.filter_by(id=id).first()
+		status = Email.delete(obj)
+		if not status:
+			flash("Email deleted successfully")
+			return redirect(url_for('admin_mail'))
+		else:
+			flash("Error in deleting email !")
+			return redirect(url_for('admin_mail'))
+	elif request.method=="GET":
+		return render_template("admin/form/maillist.html",email_to_send=email_to_send,groups=groups,emails=emails)
 	else:
-		return 'dd'
+		obj=Email(request.form['email'],request.form['name'])
+   		status=Email.add(obj)
+		if not status:
+			flash("Email added successfully")
+			return redirect(url_for('admin_mail'))
+		else:
+			flash("Error in adding email !")
+			return redirect(url_for('admin_mail'))	
+	
+		return redirect(url_for('admin_mail'))
+email_count=0
+subject=''
+description=''
+group_send=[]
+sched = Scheduler()
+#after send need to clear variables
+def sendEmail():
+	with app.app_context():
+		random_time = randint(0,240)
+		print '======>>> time to send = '+str((int(120+random_time))/60)
+		# time.sleep(random_time)
+		global email_count
+		global subject
+		global description
+		global group_send
+		obj=EmailList.query.limit(1)
+		if obj.count()>0:
+			email_count=email_count+1
+			for ob in obj:
+				#send email
+				print ob.name
+				try:
+					description = ob.description
+					subject = ob.subject
+					subject_send=subject.replace("{{name}}",ob.name)
+					description_send = description.replace("{{name}}",ob.name)
+					
+					subject_send=subject_send.replace("{{email}}",ob.email)
+					description_send = description_send.replace("{{email}}",ob.email)
+					msg = Message(subject_send,sender=(send_name,email),recipients=[ob.email])
+					message_string=str(description_send)
+					msg.html = message_string
+					# .reply_to
+					mail.send(msg)	
+					#remove email from email list after send
+					EmailList.delete(ob)
+				except Exception as e:
+					print e.message
+		else:
+			# Shutdown your cron thread if the web process is stopped
+			sched.shutdown(wait=False)
+
+			
+			#clear variables
+			email_count=0
+			subject=''
+			description=''
+			group_send=[]
 @app.route('/admin/email', methods = ['GET', 'POST'])
 @app.route('/admin/email/', methods = ['GET', 'POST'])
 @auth.login_required
 def admin_email():
+	email_to_send = EmailList.query.count()
 	if request.method=="GET":
-		return render_template("admin/form/sendmail.html")
+		groups=Group.query.order_by(Group.id.desc())
+		return render_template("admin/form/sendmail.html",email_to_send=email_to_send,groups=groups)
+	else:
+		global subject
+		global description
+		global group_send
+		global sched
+		sched = Scheduler()
+		subject = request.form['subject']
+		description = request.form['description']
+		groups = request.form.getlist('groups')
+		for group in groups:
+			print str(group)+"========="
+			group_send.append(int(group))
+			# obj=Emailgroup.query.join(Email,Emailgroup.email_id==Email.id).filter(Emailgroup.group_id==int(group))
+			obj=Emailgroup.query.filter(Emailgroup.group_id==int(group))
+			for o in obj:
+				tmp=Email.query.filter_by(id=o.email_id)
+				for t in tmp:
+					#add to email list to send 
+					try:
+						help=EmailList.query.filter_by(email=t.email)
+						if help.count()<=0:
+							temp_object=EmailList(t.name,t.email,subject,description)
+							EmailList.add(temp_object)
+						# else:
+						# 	print "Email already exists."
+					except Exception as e:
+						print e.message
+		email_to_send = EmailList.query.count()
+		sched.add_interval_job(sendEmail, seconds=10)
+		sched.start()
+		flash("Your Email will be sent successfully.")
+		groups = Group.query.all()
+		return render_template("admin/form/sendmail.html",email_to_send=email_to_send,groups=groups)
+
 @app.route('/admin/earn')
 @app.route('/admin/earn/')
 def admin_earn():
@@ -930,6 +1091,29 @@ def admin_search(pagination=1):
 	#return str(pagin)
 	return render_template('admin/search.html',search=search,page_name='search',posts=posts,current_pagin=int(pagination),pagin=(int(pagin)))
 ############## End send mail #####################
+######### Personalize Email ###########
+@app.route('/admin/checkemail/<email_id>/<group_id>/<action>/', methods=['POST', 'GET'])
+@app.route('/admin/checkemail/<email_id>/<group_id>/<action>', methods=['POST', 'GET'])
+def check_email(email_id,group_id,action):
+	email_id=int(email_id)
+	group_id=int(group_id)
+	if action=="check":
+		obj=Emailgroup.query.filter_by(email_id=email_id).filter_by(group_id=group_id)
+		if obj.count()>0:
+			return jsonify({'status':True })
+		return jsonify({'status':False })
+	elif action=="remove":
+		obj=Emailgroup.query.filter_by(email_id=email_id).filter_by(group_id=group_id).first()
+		Emailgroup.delete(obj)
+		return jsonify({'status':'success'})
+	elif action=="add":
+		emailgroup = Emailgroup(email_id,group_id)
+    	status = Emailgroup.add(emailgroup)
+        if not status:
+            return jsonify({'status':'success' })
+       	else:
+       		return jsonify({'status':'fail' })
+#############End personalize email####################
 #End Middleware
 #client
 @app.errorhandler(404)
