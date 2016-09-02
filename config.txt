@@ -1,9 +1,10 @@
 Template="emerald";
 limit="20";
-email="kimsalsan12@gmail.com";
-password="11101999sal";
+email="1@gmail.com";
+password="";
 name="Kimsal";
 https://www.google.com/settings/security/lesssecureapps
 
 
 
+	
