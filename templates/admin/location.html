@@ -157,7 +157,7 @@
     </script>
      {% for location in locations %}
      <script type="text/javascript">
-      jqgrid_data.push({"name":"<a href='/{{location.title}}' target='_blank'>{{location.title}}</a>","address":"{{location.address}}","action":"<a href='/admin/location/delete/{{location.id}}' onclick='return confirm(\"Are you sure ?\")' class='btn btn-xs btn-default'><i class='fa fa-trash-o' style='color:red;'></i></a>  <a href='/admin/location/edit/{{location.title}}' class='btn btn-xs btn-default'><i class='fa fa-pencil'></i></a>"});
+      jqgrid_data.push({"name":"<a href='/{{location.slug}}' target='_blank'>{{location.title}}</a>","address":"{{location.address}}","action":"<a href='/admin/location/delete/{{location.slug}}' onclick='return confirm(\"Are you sure ?\")' class='btn btn-xs btn-default'><i class='fa fa-trash-o' style='color:red;'></i></a>  <a href='/admin/location/edit/{{location.slug}}' class='btn btn-xs btn-default'><i class='fa fa-pencil'></i></a>"});
      </script>
      {%endfor%}
 
@@ -193,7 +193,7 @@
               var cl = ids[i];
               
               jQuery("#jqgrid").jqGrid('setRowData', ids[i], {
-                act : be + se + ca
+                // act : be + se + ca
               });
             }
           },
