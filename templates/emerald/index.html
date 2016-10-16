@@ -7,11 +7,10 @@
 <header class="intro-header">
         <div class="container">
             <div class="background" style="background-color: rgba(117, 117, 117, 0.34);"></div>
-			<div class="text col-xs-12 col-md-4 col-sm-4 col-lg-4">
-				<h1 class="h1-title no" style="">
+			<div class="text col-xs-12 col-md-8 col-sm-8 col-lg-6">
+				<h2 class="h1-title no" style="">
 					COWORKING & OFFICE SPACE
-				</h1>
-				<p>&mdash;</p>
+				</h2>
 				<p class="p-description no">Emerald HUB is the coworking space for freelancers, startups and entrepreneurs in the center of Phnom Penh. </p>
 			</div>
         </div>
@@ -23,7 +22,7 @@
 
 	  	<div class="row">
 	  		{%for location in locations%}
-	    	<div class="col-xs-12 col-sm-6 col-md-6">
+	    	<div class="col-xs-12 col-sm-6 col-md-6 col-xs-12 col-lg-6">
 	          	<div class="row">
 	          		<a href="{{location.slug}}">
 						<div class="panel price panel-red">
@@ -108,40 +107,7 @@
 		</div>
 		{%endfor%}
 		<!--end event-->
-		<div class="col-sm-12"></div>
-	  	<!--Team-->
-	  	<div class="row" id="members">
-	  		<h1 class="v-center">MEMBERS</h1>
-			<hr>
-			<!--box for team-->
-			<div class="container">
-				<div class="row">
-					{%for member in members%}
-			        <div class="col-sm-6 col-xs-12 no">
-			            <div id="tb-testimonial" class="testimonial testimonial-danger-filled">
-			                <div class="testimonial-section">
-			                    {{member.detail}}
-			                </div>
-			                <div class="testimonial-desc">
-			                	{%if member.feature_image==''%}
-			                		 <img src="/static/images/no profile.png" alt="" />
-			                	{%else%}
-				                    <img src="{{member.feature_image
-				                    }}" alt="" />
-			                    {%endif%}
-			                    <div class="testimonial-writer">
-			                    	<div class="testimonial-writer-name">{{member.name}}</div>
-			                    	<div class="testimonial-writer-designation">{{member.possition}}</div>
-			                    	<!-- <a href="#" class="testimonial-writer-company">Touch Base Inc</a> -->
-			                    </div>
-			                </div>
-			            </div>   
-					</div>
-					{%endfor%}
-				</div>
-			</div>
-			<!--end box team-->
-	  	</div>
+		
 	  	<!--end team-->
 	</div>
 </section>

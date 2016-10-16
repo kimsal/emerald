@@ -52,7 +52,9 @@
 					<!-- <br> -->
 					<br>
 					<label class="show-label" data-toggle="modal" data-target="#myModal">
-						<button class="btn btn-warning" class="btn-book">BOOK</button>
+						<button class="btn btn-warning" class="btn-book" style="width:120px;height:50px;border-radius:2px;">
+						<i class="fa fa-calendar" aria-hidden="true"></i> BOOK NOW
+						</button>
 					</label>
 				</center>
 			</div>
@@ -74,6 +76,10 @@
 									    		Fill in form for booking
 									    	</center>
 									    </legend>
+									    <div class="col-sm-12" style="margin-bottom:10px;">
+										    <i class="alert" style="display:none;">
+										    </i>
+									    </div>
 									    <div class="form-group">
 									      <div class="col-lg-12">
 									       <!--  <input class="form-control border-form" required="" id="inputName" placeholder="Your name" type="text"> -->
@@ -92,9 +98,13 @@
 									        {{ form.phone(class_="form-control border-form",placeholder="Phone") }}
 									      </div>
 									    </div>
-									    <div class="col-sm-12" style="margin-bottom:10px;">
-										    <i class="alert" style="display:none;">
-										    </i>
+									    
+									    <div class="form-group">
+									      <div class="col-lg-12">
+									        <!-- <input class="form-control border-form" required="" id="inputEmail" placeholder="Your Email" type="email">
+									         -->
+									         {{ form.description(class_="form-control border-form",placeholder="Detail") }}
+									      </div>
 									    </div>
 									    <div class="form-group">
 									      <div class="col-lg-12">
@@ -196,12 +206,14 @@
 		var name=$("#name").val();
 		var email=$("#email").val();
 		var phone=$("#phone").val();
+		var description=$("#description").val();
 		var dt=[];
 		dt[0]=name;
 		dt[1]=email;
 		dt[2]=phone;
 		dt[3]=1;
 		dt[4]=parseInt("{{location.id}}");
+		dt[5]=description;
 		if(name==''){
 			$('.alert').addClass('alert-danger');
 		    $('.alert').html("Name is required");

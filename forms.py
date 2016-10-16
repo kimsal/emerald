@@ -38,6 +38,8 @@ class BookingForm(Form):
     email = TextField("Email",[validators.Required("Please enter your email.")])
     phone = TextField("Phone",[validators.Required("Please enter your phone number.")])
     amount=TextField("Amount")
+    description = TextAreaField("Description",[validators.Required("Please enter your description.")])   
+   
     post_id = SelectField('Post', choices=[], coerce=int)
 class PartnerForm(Form):
    name = TextField("Name",[validators.Required("Please enter your partner's name.")])

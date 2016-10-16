@@ -29,10 +29,10 @@ class UserMember(db.Model):
         db.session.add(user)
         return db.session.commit()
     def update(self):
-        return session_commit()
+        return db.session.commit()
     def delete(user):
         db.session.delete(user)
-        return session_commit()
+        return db.session.commit()
     @staticmethod
     def verify_auth_token(token):
         s = Serializer(SECRET_KEY)
@@ -62,10 +62,10 @@ class Member(db.Model):
         db.session.add(member)
         return db.session.commit()
     def update(self):
-        return session_commit()
+        return db.session.commit()
     def delete(member):
         db.session.delete(member)
-        return session_commit()
+        return db.session.commit()
 
 class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -155,7 +155,7 @@ class Post(db.Model):
         db.session.add(post)
         return db.session.commit()
     def update(self):
-        return session_commit()
+        return db.session.commit()
     def delete(post):
         db.session.delete(post)
         return db.session.commit()
@@ -196,7 +196,7 @@ class Location(db.Model):
         db.session.add(location)
         return db.session.commit()
     def update(self):
-        return session_commit()
+        return db.session.commit()
     def delete(location):
         db.session.delete(location)
         return db.session.commit()
@@ -209,7 +209,7 @@ class Email(db.Model):
     def __str__(self):
         return self.name
     def update(self):
-        return session_commit()
+        return db.session.commit()
     def to_Json(self):
         return dict(id=self.id,
             email=self.email,
@@ -232,7 +232,7 @@ class Group(db.Model):
     def __str__(self):
         return self.name
     # def update(self):
-    #     return session_commit()    
+    #     return db.session.commit()
     def to_Json(self):
         return dict(id=self.id,
             name=self.name
@@ -275,7 +275,7 @@ class Contact(db.Model):
     def __str__(self):
         return self.name
     # def update(self):
-    #     return session_commit()    
+    #     return db.session.commit()
     def to_Json(self):
         return dict(id=self.id,
             firstname=self.firstname,
@@ -299,25 +299,28 @@ class Booking(db.Model):
     phone  = db.Column(db.String(255),nullable=True)
     amount = db.Column(db.Integer,nullable=True)
     location_id=db.Column(db.Integer,db.ForeignKey('location.id'))
+    description = db.Column(db.Text)
     published_at=db.Column(db.TIMESTAMP,server_default=db.func.current_timestamp())
     def __str__(self):
         return self.name
     # def update(self):
-    #     return session_commit()    
+    #     return db.session.commit()
     def to_Json(self):
         return dict(id=self.id,
             name=self.name,
             email=self.email,
             phone=self.phone,
             location_id=self.location_id,
-            amount=self.amount
+            amount=self.amount,
+            description=self.description
             )
-    def __init__(self,name,email,phone,location_id,amount=1,):
+    def __init__(self,name,email,phone,location_id,amount=1,description=''):
         self.name =name,
         self.email =email,
         self.phone =phone,
         self.amount=amount,
-        self.location_id=location_id
+        self.location_id=location_id,
+        self.description=description
     def add(booking):
         db.session.add(booking)
         return db.session.commit()
@@ -337,7 +340,7 @@ class Event(db.Model):
     def __str__(self):
         return self.title
     # def update(self):
-    #     return session_commit()    
+    #     return db.session.commit()
     def to_Json(self):
         return dict(id=self.id,
             title=self.title,
@@ -372,7 +375,7 @@ class Partner(db.Model):
     def __str__(self):
         return self.name
     # def update(self):
-    #     return session_commit()    
+    #     return db.session.commit()
     def to_Json(self):
         return dict(id=self.id,
             name=self.name,
@@ -400,7 +403,7 @@ class EmailList(db.Model):
     def __str__(self):
         return self.name
     # def update(self):
-    #     return session_commit()    
+    #     return db.session.commit() 
     def to_Json(self):
         return dict(id=self.id,
             name=self.name,

@@ -162,7 +162,7 @@ def admin_member(pagination=1,action='',slug=''):
         	# return str('event')
         	status = Member.add(member)
 	        if not status:
-	            flash("member added successfully")
+	            flash("Member added successfully")
 	            return redirect(url_for('admin_member'))
 	       	else:
 	       		flash("Fail to add member !")
@@ -177,7 +177,7 @@ def admin_member(pagination=1,action='',slug=''):
 			return render_template("admin/form/member.html",form=form,member_object=members)
 		else:
 			try:
-				Members.update({"slug" : slugify(request.form['name']) , "name" : request.form['name'],'possition':request.form['possition'],'detail':request.form['detail'],'feature_image':request.form['txt_temp_image'] })
+				members.update({"slug" : slugify(request.form['name']) , "name" : request.form['name'],'possition':request.form['possition'],'detail':request.form['detail'],'feature_image':request.form['txt_temp_image'] })
 		   		status = db.session.commit()
 				flash("Member updated successfully.")
 				return redirect(url_for("admin_member"))
@@ -195,8 +195,8 @@ def admin_member(pagination=1,action='',slug=''):
 			flash('Fail to delete member. '+ e.message)
 			return redirect(url_for('admin_member'))
 	else:
-		members=Member.query.all()
-		member=Member.query.order_by(Member.id.desc()).limit(limit).offset(int(int(int(pagination)-1)*limit))
+		# members=Member.query.all()
+		members=Member.query.order_by(Member.id.desc()).limit(limit).offset(int(int(int(pagination)-1)*limit))
 		pagin=math.ceil((Member.query.count())/limit)
 		if((Member.query.count())%limit != 0 ):
 			pagin=int(pagin+1)
@@ -289,7 +289,7 @@ def admin_booking(pagination=1,action='',name=''):
 			flash('Fail to delete booking. '+ e.message)
 			return redirect(url_for('admin_booking'))
 	else:
-		bookings=Booking.query.join(Location,Booking.location_id == Location.id).order_by(Booking.id.desc()).limit(limit).offset(int(int(int(pagination)-1)*limit))
+		bookings=Booking.query.order_by(Booking.id.desc()).limit(limit).offset(int(int(int(pagination)-1)*limit))
 		pagin=math.ceil((Booking.query.join(Location,Booking.location_id == Location.id).count())/limit)
 		if((Booking.query.join(Location,Booking.location_id == Location.id).count())%limit != 0 ):
 			pagin=int(pagin+1)
@@ -369,7 +369,9 @@ def booking(type_submit=''):
 			phone=data[2]
 			amount=data[3]
 			location_id=data[4]
-			booking=Booking(name,email,phone,location_id,amount)
+			description=data[5]
+			print description
+			booking=Booking(name,email,phone,location_id,amount,description)
 			status = Booking.add(booking)
 			if not status:
 				return "Your info saved was successfully"
@@ -1215,7 +1217,9 @@ def single(slug='',pagination=1):
 					status = db.session.commit()
 					session['amoogli_view'] = (str(session.get('amoogli_view')))+","+slug
 		elif page_object.count()>0:
-			return render_template(template+"/page.html",page_name="page",page_object=page_object)
+			members=Member.query.all()
+			form=BookingForm()
+			return render_template(template+"/page.html",form=form,members=members,page_name="page",page_object=page_object)
 		else:
 			category=Category.query.filter_by(slug=slug)
 			if category.count()>0:
