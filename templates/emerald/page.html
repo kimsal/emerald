@@ -111,8 +111,15 @@
 					<!--box for team-->
 					<div class="container">
 						<div class="row">
+							{%set help=0%}
 							{%for member in members%}
+								{%set help=help+1%}
+					        	{%if help==3%}
+					        		<div class="clearfix"></div>
+					        		{%set help=0%}
+					        	{%endif%}
 					        <div class="col-sm-6 col-xs-12 no">
+
 					            <div id="tb-testimonial" class="testimonial testimonial-danger-filled">
 					                <div class="testimonial-section"  style="background-color:#DC9027;">
 					                    {{member.detail}}
