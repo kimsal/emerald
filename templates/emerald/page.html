@@ -103,47 +103,47 @@
 
 
 
-			<div class="col-sm-12"></div>
-				  	<!--Team-->
-			  	<div class="row" id="members">
-			  		<h1 class="v-center">MEMBERS</h1>
-					<hr>
-					<!--box for team-->
-					<div class="container">
-						<div class="row">
-							{%set help=0%}
-							{%for member in members%}
-								{%set help=help+1%}
-					        	{%if help==3%}
-					        		<div class="clearfix"></div>
-					        		{%set help=1%}
-					        	{%endif%}
-					        <div class="col-sm-6 col-xs-12 no">
+<div class="col-sm-12"></div>
+  	<!--Team-->
+	<div class="row" id="members">
+		<h1 class="v-center">TEAM</h1>
+	<hr>
+	<!--box for team-->
+	<div class="container">
+		<div class="row">
+			{%set help=0 %}
+			{%for member in members%}
+				{%set help=help+1%}
+	        	{%if help==3%}
+	        		<div class="clearfix"></div>
+	        		{%set help=1%}
+	        	{%endif%}
+	        <div class="col-sm-6 col-xs-12 no">
 
-					            <div id="tb-testimonial" class="testimonial testimonial-danger-filled">
-					                <div class="testimonial-section"  style="background-color:#DC9027;">
-					                    {{member.detail}}
-					                </div>
-					                <div class="testimonial-desc">
-					                	{%if member.feature_image==''%}
-					                		 <img src="/static/images/no profile.png" alt="" />
-					                	{%else%}
-						                    <img src="{{member.feature_image
-						                    }}" alt="" />
-					                    {%endif%}
-					                    <div class="testimonial-writer">
-					                    	<div class="testimonial-writer-name">{{member.name}}</div>
-					                    	<div class="testimonial-writer-designation">{{member.possition}}</div>
-					                    	<!-- <a href="#" class="testimonial-writer-company">Touch Base Inc</a> -->
-					                    </div>
-					                </div>
-					            </div>   
-							</div>
-							{%endfor%}
-						</div>
-					</div>
-					<!--end box team-->
-			  	</div>
+	            <div id="tb-testimonial" class="testimonial testimonial-danger-filled">
+	                <div class="testimonial-section"  style="background-color:#DC9027;">
+	                    {{member.detail}}
+	                </div>
+	                <div class="testimonial-desc">
+	                	{%if member.feature_image==''%}
+	                		 <img src="/static/images/no profile.png" alt="" />
+	                	{%else%}
+		                    <img src="{{member.feature_image
+		                    }}" alt="" />
+	                    {%endif%}
+	                    <div class="testimonial-writer">
+	                    	<div class="testimonial-writer-name">{{member.name}}</div>
+	                    	<div class="testimonial-writer-designation">{{member.possition}}</div>
+	                    	<!-- <a href="#" class="testimonial-writer-company">Touch Base Inc</a> -->
+	                    </div>
+	                </div>
+	            </div>   
+			</div>
+			{%endfor%}
+		</div>
+	</div>
+	<!--end box team-->
+	</div>
 
 
 

@@ -11,7 +11,9 @@
 		    	<div class="hovereffect">
 		        	<img class="img-responsive" src="{{post.feature_image}}" alt="">
 			        <div class="overlay">
+			        {%if post.category.name!='PROGRAM'%}
 			           <h2>{{post.title}}</h2>
+			        {%endfor%}
 			        </div>
 		    	</div>
 		    	</a>
@@ -20,8 +22,6 @@
 		</div>
 	</div>
 </section>
-
-
 <center>
                         <ul class="pagination pagination-sm">
                         {% if pagin > 1 %}

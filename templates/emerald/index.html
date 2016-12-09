@@ -9,46 +9,17 @@
             <div class="background" style="background-color: rgba(117, 117, 117, 0.34);"></div>
 			<div class="text col-xs-12 col-md-8 col-sm-8 col-lg-6">
 				<h2 class="h1-title no" style="">
-					COWORKING & OFFICE SPACE
+					<br/><br/><br/>
+					Welcome to Emerald HUB
 				</h2>
-				<p class="p-description no">Emerald HUB is the coworking space for freelancers, startups and entrepreneurs in the center of Phnom Penh. </p>
+				<p class="p-description no">
+				<!-- Emerald HUB is the coworking space for freelancers, startups and entrepreneurs in the center of Phnom Penh.  -->
+				</p>
 			</div>
         </div>
 </header>
 <section class="container-fluid bg-space" id="location">
-	<div class="container">
-			<h1 class="v-center">LOCATIONS</h1>
-			<hr>
-
-	  	<div class="row">
-	  		{%for location in locations%}
-	    	<div class="col-xs-12 col-sm-6 col-md-6 col-xs-12 col-lg-6">
-	          	<div class="row">
-	          		<a href="{{location.slug}}">
-						<div class="panel price panel-red">
-							<div class="panel-heading  text-center">
-							</div>
-							<div class="panel-body text-center">
-								<img src="{{location.feature_image1}}" class="img-responsive" style="width:100%">
-							</div>
-							<ul class="list-group list-group-flush text-center no">
-								<li class="list-group-item">
-									<h3>{{location.title}}</h3>
-								</li>
-								<li class="list-group-item">
-									<h5>
-									{{location.address}}
-									</h5>
-								</li>
-							</ul>
-						</div>
-					</a>
-	          	</div>
-	    	</div>
-	    	{%endfor%}
-
-		</div>
-	</div>
+	
 </section>
 <section class="container-fluid bg-space" style="margin-top:-10px;" id="section2">
 	<div class="container">
@@ -111,6 +82,49 @@
 	  	<!--end team-->
 	</div>
 </section>
+
+<section class="container-fluid bg-space" style="margin-top:-10px;" id="section4">
+<div class="container cohub-features">
+	<h1 class="v-center">Why choose Emerald Hub?</h1>
+    <div class="col-md-3">
+      <img src="/static/images/24hour.png" class="img-responsive">
+      <p>24 Hours Access ( Because We live in the different part of the world 
+</p>
+    </div>
+    <div class="col-md-3">
+      <img src="/static/images/wfi.png" class="img-responsive" class="img-responsive">
+      <p>High Speed Internet ( Up to 5.5 Mbps for each user ) </p>
+    </div>
+    <div class="col-md-3">
+      <img src="http://cohub.co.uk/wp-content/themes/cohub/img/bbq.png" class="img-responsive">
+      
+      <p>Printer Machine ( Standing right waiting for you to Print ) </p>
+    </div>
+    <div class="col-md-3">
+      <img src="http://cohub.co.uk/wp-content/themes/cohub/img/network.png" class="img-responsive">
+      <p>Greenery Balcony ( Breathe fresh air under the clear blue sky ) </p>
+    </div>
+    <div class="clearfix"></div>
+     <div class="col-md-3">
+      <img src="http://cohub.co.uk/wp-content/themes/cohub/img/network.png" class="img-responsive">
+      <p>Hub Cafe ( Satisfy with every Cup of Coffee in the morning ) </p>
+    </div>
+     <div class="col-md-3">
+      <img src="http://cohub.co.uk/wp-content/themes/cohub/img/network.png" class="img-responsive">
+      <p>Smoking Zone ( Smoking never be a problem ) 
+ 	</p>
+    </div>
+     <div class="col-md-3">
+      <img src="http://cohub.co.uk/wp-content/themes/cohub/img/network.png" class="img-responsive">
+      <p>Shared Kitchen ( Free coffee , tea , hot and cold water )  </p>
+    </div>
+     <div class="col-md-3">
+      <img src="http://cohub.co.uk/wp-content/themes/cohub/img/network.png" class="img-responsive">
+      <p>Wide Parking Lot ( Parking your vehicles in a fairly large space )  </p>
+    </div>
+  </div>
+</section>
+
 <!--smooth-->
   <script type="text/javascript">
 jQuery(document).ready(function() {
@@ -120,5 +134,16 @@ jQuery(document).ready(function() {
      });   
 });            
 </script>
+<style type="text/css">
+	.cohub-features .col-md-3 img{
+		vertical-align: middle;
+		display: block;
+	    margin-left: auto;
+	    margin-right: auto;
+	    width: 80px;
+	    height:80px;
+	    margin-bottom: 20px;
+	}
+</style>
 
 {% include template_name+'/footer.html' %} 

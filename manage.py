@@ -114,7 +114,7 @@ def logout():
 	return response
 @app.route('/admin/register', methods=['POST', 'GET'])
 @app.route('/admin/register/', methods=['POST', 'GET'])
-#@auth.login_required
+@auth.login_required
 def admin_register():
 	form = UserMemberForm()
 	if request.method == 'POST':
@@ -1175,7 +1175,7 @@ def page_not_found(e):
 def index(pagination=1):
 	global limit
 	form=ContactForm() 
-	posts_top = Post.query.join(UserMember).order_by(Post.id.desc()).limit(6)
+	posts_top = Post.query.filter_by(category_id=1).join(UserMember).order_by(Post.id.desc()).limit(6)
 	posts_bottom = Post.query.order_by(Post.id.desc()).limit(3).offset(3)
 	# posts_bottom=Post.query.all()
 	home_posts=Post.query.join(UserMember).order_by(Post.id.desc()).limit(limit).offset(int(int(int(pagination)-1)*limit))

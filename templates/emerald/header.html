@@ -42,29 +42,29 @@
 		<meta name="keywords" content="Emerald - Co-working space Cambodia, Phnom Penh office space, working space for rent, start up">
 	{% elif page_name == 'single' %}
 		{%for post in post_object%}
-			<title>{{post.title}} | Anakot asea</title>
+			<title>{{post.title}} | Emeraldhub.co</title>
 			<meta name="description" content="Emerald - Co-working space Cambodia, Phnom Penh office space, working space for rent, start up,{{post.title}}">
 			<meta name="keywords" content="{{post.title}} Training,leadership cambodia,anakot asea">
 		{%endfor%}
 	{% elif page_name == 'category' %}
-		<title>{{category_name}}|Anakot asea</title>
+		<title>{{category_name}}|Emeraldhub.co</title>
 		<meta name="description" content="{{category_name}} Emerald - Co-working space Cambodia, Phnom Penh office space, working space for rent, start up">
 		<meta name="keywords" content="{{category_name}} ,Emerald - Co-working space Cambodia, Phnom Penh office space, working space for rent, start up">
 	{% elif page_name == 'page' %}
 		{%for page in page_object%}
-			<title>{{page.title}}|Anakot asea </title>
+			<title>{{page.title}}|Emeraldhub.co</title>
 			<meta name="description" content="{{page.title}} Emerald - Co-working space Cambodia, Phnom Penh office space, working space for rent, start up">
 			<meta name="keywords" content="{{page.title}}Emerald - Co-working space Cambodia, Phnom Penh office space, working space for rent, start up">
 		{%endfor%}
 	{% elif page_name == 'location' %}
 		{%for location in location_object%}
-			<title>{{location.title}}|Emerald  </title>
+			<title>{{location.title}}|Emeraldhub.co  </title>
 			<meta name="description" content="{{location.title}} Emerald - Co-working space Cambodia, Phnom Penh office space, working space for rent, start up">
 			<meta name="keywords" content="{{location.title}}Emerald - Co-working space Cambodia, Phnom Penh office space, working space for rent, start up">
 		{%endfor%}
 	{% elif page_name == 'event' %}
 		{%for event in event_object%}
-			<title>{{event.title}}|Emerald </title>
+			<title>{{event.title}}| Emeraldhub.co </title>
 			<meta name="description" content="{{event.title}} Emerald - Co-working space Cambodia, Phnom Penh office space, working space for rent, start up">
 			<meta name="keywords" content="{{event.title}}Emerald - Co-working space Cambodia, Phnom Penh office space, working space for rent, start up">
 		{%endfor%}
@@ -85,14 +85,20 @@
   <input type="checkbox" id="drop" />
   <ul class="menu">
  	 <li><a href="/">Home</a></li>
- 	 <li><a href="/#location">LOCATION</a></li>
- 	 <!-- <li><a href="/#members">MEMBER</a></li> -->
- 	 <li><a href="/#events">EVENT</a></li>
-  	{%for category in categories%}	
-    	<li><a href="/{{category.slug}}">{{category.name}}</a></li>
-    {%endfor%}
-    {%for page in pages %}
+ 	 <li><a href="/about">About</a></li>
+ 	 <li><a href="/program">Program</a></li>
+ 	 <li><a href="/pricing">Pricing</a></li>
+ 	 <li><a href="/blog">Blog</a></li>
+ 	 <li><a href="/contact">Contact</a></li>
+
+ 	 {%for page in pages %}
     <li><a href="/{{page.slug}}">{{page.title}}</a></li>
     {%endfor%}
+    {%for category in categories%}	
+    	<li><a href="/{{category.slug}}">{{category.name}}</a></li>
+    {%endfor%}
+ 	 <li><a href="/#events">EVENT</a></li>
+  	
+    
   </ul>
 </nav>
