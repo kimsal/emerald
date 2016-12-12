@@ -1,13 +1,13 @@
 """empty message
 
-Revision ID: b41828ee87d9
+Revision ID: 13722ce41ec1
 Revises: None
-Create Date: 2016-09-01 22:45:12.014656
+Create Date: 2016-12-09 13:35:03.221741
 
 """
 
 # revision identifiers, used by Alembic.
-revision = 'b41828ee87d9'
+revision = '13722ce41ec1'
 down_revision = None
 
 from alembic import op
@@ -45,6 +45,8 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=255), nullable=True),
     sa.Column('email', sa.String(length=255), nullable=True),
+    sa.Column('subject', sa.String(length=1000), nullable=True),
+    sa.Column('description', sa.Text(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('group',
@@ -155,6 +157,7 @@ def upgrade():
     sa.Column('phone', sa.String(length=255), nullable=True),
     sa.Column('amount', sa.Integer(), nullable=True),
     sa.Column('location_id', sa.Integer(), nullable=True),
+    sa.Column('description', sa.Text(), nullable=True),
     sa.Column('published_at', sa.TIMESTAMP(), server_default=sa.text(u'CURRENT_TIMESTAMP'), nullable=True),
     sa.ForeignKeyConstraint(['location_id'], ['location.id'], ),
     sa.PrimaryKeyConstraint('id')

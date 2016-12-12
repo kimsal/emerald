@@ -8,6 +8,10 @@ html,body {
 	background-color:#fff;
 }
 
+.span-head{
+  font-size: 30px;
+}
+
 
 section {
 	padding-top: 0px;  
@@ -312,6 +316,9 @@ a:hover{
   padding: 3px;
   font-size: 20px;
 }
+.fa-5x{
+  color: #dd9933;
+}
 .name-li{
   list-style: none;
   font-size: 15px;
@@ -428,3 +435,21 @@ a:hover{
             .testimonial.testimonial-danger-filled .testimonial-writer-name{
                 color: #D9534F;
             }
+
+#owl-demo .item{
+  margin: 3px;
+}
+#owl-demo .item img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+
+
+#owl-demo1 .item img{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
