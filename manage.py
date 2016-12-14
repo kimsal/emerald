@@ -70,6 +70,8 @@ def get_auth_token():
 def pricing():
 	return render_template(template+'/price.html')
 
+
+
 @app.route('/download/<name>')
 def download(name=''):
 	return send_file('static/files/'+name,

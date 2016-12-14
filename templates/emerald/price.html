@@ -1,1 +1,86 @@
-test
+{% include template_name+'/header.html' %} 
+<style>
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+th, td {
+    border: none;
+    text-align: left;
+    padding: 8px;
+}
+tr th{
+  padding: 30px 10px;
+  background-color: orange;
+  font-size: 13px;
+  color: #fff;
+}
+tr td{
+  padding: 30px 10px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+</style>
+<body>
+
+<div style="overflow-x:auto;">
+  <table>
+    <tr>
+      <th>Happy New Year</th>
+      <th>Day pass</th>
+      <th>CountryWeekend</th>
+      <th>Weekday ( Part time )</th>
+      <th>Weekday( full time )</th>
+      <th>Whole week</th>
+      <th>Small Meeting room</th>
+      <th>Big Meeting room</th>
+
+    </tr>
+    <tr>
+      <td>Jill</td>
+      <td>Smith</td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <td>Jill</td>
+      <td>Smith</td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <td>Jill</td>
+      <td>Smith</td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <td>Jill</td>
+      <td>Smith</td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+      <td>50</td>
+    </tr>
+
+  </table>
+</div>
+
+{% include template_name+'/footer.html' %} 
