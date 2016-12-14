@@ -65,6 +65,11 @@ def goLoginPage():
 def get_auth_token():
     token = g.user.generate_auth_token()
     return jsonify({ 'token': token.decode('ascii') })
+@app.route('/pricing')
+@app.route('/pricing/')
+def pricing():
+	return render_template(template+'/price.html')
+
 @app.route('/download/<name>')
 def download(name=''):
 	return send_file('static/files/'+name,
