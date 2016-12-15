@@ -153,7 +153,9 @@ jQuery(document).ready(function() {
 <div id="owl-demo" class="owl-carousel" style="background-color:#ddd;">
 {%for partner in partners%}
   <div class="item">
+  <center>
   	<a href="{{partner.slug}}" target"_blank"><img class="lazyOwl" data-src="{{partner.feature_image}}" alt="{{partner.name}}"></div>
+  </center>
 {%endfor%}
 </div>
  

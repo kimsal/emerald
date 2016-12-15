@@ -437,20 +437,12 @@ a:hover{
             }
 
 #owl-demo .item{
-  margin: 3px;
+  margin: 0px;
+  padding: 20px;
 }
 #owl-demo .item img{
-  display: block;
   width: 100%;
   height: auto;
-}
-
-
-
-#owl-demo1 .item img{
-    display: block;
-    width: 100%;
-    height: auto;
 }
 
 
