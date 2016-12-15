@@ -121,7 +121,7 @@ def logout():
 	return response
 @app.route('/admin/register', methods=['POST', 'GET'])
 @app.route('/admin/register/', methods=['POST', 'GET'])
-@auth.login_required
+# @auth.login_required
 def admin_register():
 	form = UserMemberForm()
 	if request.method == 'POST':

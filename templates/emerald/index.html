@@ -151,22 +151,10 @@ jQuery(document).ready(function() {
 	}
 </style>
 <div id="owl-demo" class="owl-carousel" style="background-color:#ddd;">
-  <div class="item"><img class="lazyOwl" data-src="static/{{template_name}}/assets/owl1.jpg" alt="Lazy Owl Image"></div>
-  <div class="item"><img class="lazyOwl" data-src="static/{{template_name}}/assets/owl2.jpg" alt="Lazy Owl Image"></div>
-  <div class="item"><img class="lazyOwl" data-src="static/{{template_name}}/assets/owl3.jpg" alt="Lazy Owl Image"></div>
-  <div class="item"><img class="lazyOwl" data-src="static/{{template_name}}/assets/owl4.jpg" alt="Lazy Owl Image"></div>
-  <div class="item"><img class="lazyOwl" data-src="static/{{template_name}}/assets/owl5.jpg" alt="Lazy Owl Image"></div>
-  <div class="item"><img class="lazyOwl" data-src="static/{{template_name}}/assets/owl6.jpg" alt="Lazy Owl Image"></div>
-  <div class="item"><img class="lazyOwl" data-src="static/{{template_name}}/assets/owl7.jpg" alt="Lazy Owl Image"></div>
-  <div class="item"><img class="lazyOwl" data-src="static/{{template_name}}/assets/owl8.jpg" alt="Lazy Owl Image"></div>
-  <div class="item"><img class="lazyOwl" data-src="static/{{template_name}}/assets/owl1.jpg" alt="Lazy Owl Image"></div>
-  <div class="item"><img class="lazyOwl" data-src="static/{{template_name}}/assets/owl2.jpg" alt="Lazy Owl Image"></div>
-  <div class="item"><img class="lazyOwl" data-src="static/{{template_name}}/assets/owl3.jpg" alt="Lazy Owl Image"></div>
-  <div class="item"><img class="lazyOwl" data-src="static/{{template_name}}/assets/owl4.jpg" alt="Lazy Owl Image"></div>
-  <div class="item"><img class="lazyOwl" data-src="static/{{template_name}}/assets/owl5.jpg" alt="Lazy Owl Image"></div>
-  <div class="item"><img class="lazyOwl" data-src="static/{{template_name}}/assets/owl6.jpg" alt="Lazy Owl Image"></div>
-  <div class="item"><img class="lazyOwl" data-src="static/{{template_name}}/assets/owl7.jpg" alt="Lazy Owl Image"></div>
-  <div class="item"><img class="lazyOwl" data-src="static/{{template_name}}/assets/owl8.jpg" alt="Lazy Owl Image"></div>
+{%for partner in partners%}
+  <div class="item">
+  	<a href="{{partner.slug}}" target"_blank"><img class="lazyOwl" data-src="{{partner.feature_image}}" alt="{{partner.name}}"></div>
+{%endfor%}
 </div>
  
 
