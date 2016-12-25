@@ -450,22 +450,30 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
     width: 100%;
-    border: 0px solid #ddd;
+    border: 1px solid #ddd;
 }
+tr{
+ border: 1px solid #ddd; 
+}
+
 
 th, td {
     border: none;
     text-align: left;
     padding: 8px;
 }
-tr th{
-  padding: 30px 10px;
-  background-color: orange;
-  font-size: 13px;
-  color: #fff;
-}
-tr td{
-  padding: 30px 10px;
-}
+
 
 tr:nth-child(even){background-color: #f2f2f2}
+.title-tr th{
+  padding: 10px 10px;
+  background-color: #d98e28;
+  font-size: 12px;
+  color: #fff;
+  font-weight: bold;
+}
+.title-under{
+  font-weight: bold;
+}
+
+
