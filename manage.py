@@ -72,6 +72,7 @@ def pricing():
 
 
 
+
 @app.route('/download/<name>')
 def download(name=''):
 	return send_file('static/files/'+name,
