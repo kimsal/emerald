@@ -162,7 +162,7 @@ jQuery(document).ready(function() {
 
 <div class="row" style="background-color:#f9f9f9;">
     <div class="col-md-12">
-         <h1 style="color:#000;">Partner</h1>
+         <h1 style="color:#000;">Partners</h1>
 
         <div class="well" style="padding:10px;">
             <div id="myCarousel" class="carousel slide">
@@ -171,14 +171,10 @@ jQuery(document).ready(function() {
                 <div class="carousel-inner">
                     <div class="item active">
                         <div class="row">
-                            <div class="col-sm-3"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
+                        {%for partner in partners%}
+                            <div class="col-sm-3"><a href="#x"><img src="{{partner.feature_image}}" alt="Image" class="img-responsive"></a>
                             </div>
-                            <div class="col-sm-3"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
-                            <div class="col-sm-3"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
-                            <div class="col-sm-3"><a href="#x"><img src="http://placehold.it/500x500" alt="Image" class="img-responsive"></a>
-                            </div>
+                        {%endfor%}
                         </div>
                         <!--/row-->
                     </div>
