@@ -450,22 +450,76 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
     width: 100%;
-    border: 0px solid #ddd;
+    border: 1px solid #ddd;
 }
+tr{
+ border: 1px solid #ddd; 
+}
+
 
 th, td {
     border: none;
     text-align: left;
     padding: 8px;
 }
-tr th{
-  padding: 30px 10px;
-  background-color: orange;
-  font-size: 13px;
-  color: #fff;
+
+
+tr:nth-child(even){background-color: #f2f2f2;}
+.title-tr th{
+  padding: 10px 10px;
+  background-color: #d98e28;
+  font-size: 12px;
+  color: #000;
+  font-weight: bold;
 }
-tr td{
-  padding: 30px 10px;
+.title-under{
+  font-weight: bold;
 }
 
-tr:nth-child(even){background-color: #f2f2f2}
+.join-us{
+  background-color: #d98e28;
+  color: #fff;
+  width: 30%;
+  padding: 20px 20px;
+  border-color: transparent;
+}
+.join-us:hover{
+  background-color: #d98e28;
+  color: #000;
+  transition: 0.5s;
+  width: 30%;
+  padding: 20px 20px;
+  border-color: transparent;
+}
+
+.JoinTitle{
+  text-align: left;
+  color: #d98e28;
+  font-size: 18px;
+}
+
+.JoinP{
+  text-align: left;
+  font-size: 15px;
+  line-height: 20px;
+}
+.JoinSubmite{
+  width: 100%;
+  border-radius: 0px;
+  background-color: #d98e28;
+  border-color: transparent;
+  color: #fff;
+  font-weight: bold;
+}
+.JoinSubmite:hover{
+  color: #000;
+  background-color: #d98e28;
+  border-color: transparent;
+  transition: 0.5s;
+}
+.JoinRight{
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+}
+

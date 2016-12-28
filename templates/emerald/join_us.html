@@ -1,0 +1,89 @@
+{% include template_name+'/header.html' %} 
+
+<div class="container" style="margin-top:20px; max-width:1000px; padding:15px;">
+	<div class="row">
+		<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+			<h3>JOIN EMERALD HUB</h3>
+			<hr>
+			<p class="JoinTitle">I'd like to Join!</p>
+			<p class="JoinP">That's great news! We'd love to get you signed up. To start with this we'd like to invite you to one of our weekly Induction sessions on Wednesday at 5pm or Friday at 10am. We host this as a group session so that you can connect with new members from the start! Fill out below which induction meeting suits you and also which tariff you are thinking about.</p>
+
+			<form>
+			    	<input type="text" class="form-control" id="fname" placeholder="First Name:">
+			    	<br>
+			    	<input type="text" class="form-control" id="lname" placeholder="Last Name:">
+			    	<br>
+				    <input type="email" class="form-control" id="lname" placeholder="Email:"> 
+				    <br>
+				    <textarea class="form-control" rows="5" id="comment" placeholder="What are you working on?"></textarea>
+				    <p class="JoinP">We would love to know more about your profile and why you would like to become a member of Emerald Hub.</p>
+
+				    <p class="JoinP">Which Membership package are you interested in?</p>
+				    <div class="radio">
+					  <label><input type="radio" name="optradio">Executive Hubber</label>
+					</div>
+					<div class="radio">
+					  <label><input type="radio" name="optradio">Full-time Hubber</label>
+					</div>
+					<div class="radio">
+					  <label><input type="radio" name="optradio">Part-Time Hubber</label>
+					</div>
+					<div class="radio">
+					  <label><input type="radio" name="optradio">Hub Connect</label>
+					</div>
+
+					<p class="JoinP">Don't worry if you're not sure yet as you will get a chance to choose the membership in the Sign up form.</p>
+
+			  <button type="submit" class="btn btn-default JoinSubmite">Submit</button>
+			</form>
+
+
+
+		</div>
+		<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+			<h3 class="JoinRight">Contact Us </h3>
+			<hr>
+			<form>
+		    	<input type="text" class="form-control" id="name" placeholder="Full Name:">
+		    	<br>
+			    <input type="email" class="form-control" id="lname" placeholder="Email:"> 
+			    <br>
+			    <input type="text" class="form-control" id="subject" placeholder="Subject:">
+		    	<br>
+			    <textarea class="form-control" rows="5" id="comment" placeholder="What are you working on?"></textarea>
+			    <br>
+
+			  <button type="submit" class="btn btn-default JoinSubmite">SEND MESSAGE</button>
+			</form>
+			<br>
+
+			<h3 class="JoinRight">Book Our Space </h3>
+			<hr>
+			<form>
+		    	<input type="text" class="form-control" id="name" placeholder="Time:">
+		    	<br>
+		    	<input type="text" class="form-control" id="name" placeholder="Number of number:">
+		    	<br>
+		    	<input type="text" class="form-control" id="name" placeholder="Name:">
+		    	<br>
+		    	<input type="text" class="form-control" id="name" placeholder="Phone Number:">
+		    	<br>
+			    <input type="email" class="form-control" id="lname" placeholder="Email:"> 
+			    <br>
+			    <input type="text" class="form-control" id="subject" placeholder="Organization:">
+		    	<br>
+			    <textarea class="form-control" rows="5" id="comment" placeholder="Message"></textarea>
+			    <br>
+
+			  <button type="submit" class="btn btn-default JoinSubmite">SUBMIT</button>
+			</form>
+
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="/static/{{template_name}}/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="/static/{{template_name}}/js/bootstrap-datetimepicker.fr.js"></script>
+
+
+{% include template_name+'/footer.html' %} 
