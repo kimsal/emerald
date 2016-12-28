@@ -477,19 +477,49 @@ tr:nth-child(even){background-color: #f2f2f2;}
 }
 
 .join-us{
-  padding: 15px 70px;
-  background-color: #d98e28;
-  color: #000;
-  border-color: transparent;
-  transition: 0.5s;
-}
-
-.join-us:hover{
-  padding: 15px 70px;
   background-color: #d98e28;
   color: #fff;
+  width: 30%;
+  padding: 20px 20px;
+  border-color: transparent;
+}
+.join-us:hover{
+  background-color: #d98e28;
+  color: #000;
+  transition: 0.5s;
+  width: 30%;
+  padding: 20px 20px;
+  border-color: transparent;
+}
+
+.JoinTitle{
+  text-align: left;
+  color: #d98e28;
+  font-size: 18px;
+}
+
+.JoinP{
+  text-align: left;
+  font-size: 15px;
+  line-height: 20px;
+}
+.JoinSubmite{
+  width: 100%;
+  border-radius: 0px;
+  background-color: #d98e28;
+  border-color: transparent;
+  color: #fff;
+  font-weight: bold;
+}
+.JoinSubmite:hover{
+  color: #000;
+  background-color: #d98e28;
   border-color: transparent;
   transition: 0.5s;
 }
-
+.JoinRight{
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+}
 

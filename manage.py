@@ -71,6 +71,12 @@ def pricing():
 	return render_template(template+'/price.html')
 
 
+@app.route('/join')
+@app.route('/join/')
+def join():
+	return render_template(template+'/join_us.html')
+
+
 
 
 @app.route('/download/<name>')
