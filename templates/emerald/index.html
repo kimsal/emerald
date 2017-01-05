@@ -55,7 +55,7 @@
 		<hr>
 	  	<!--event -->
 	  	{% for event in events %}
-				<a href="/{{event.slug}}" target="_blank">
+				<a href="/{{event.slug}}" target="_blank" style="display:inline;">
 					<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border" style="padding: 0px;">
 					    	<img src="{{event.feature_image}}" class="img-responsive" style="padding:0px;margin-top: 13px;width:100%">
 					</div>
@@ -71,7 +71,7 @@
 						    </small>
 						    <br>
 					    	<p class="" style="margin-top:5px;text-align:left;color:#000;font-size:17px">
-					    		{{event.description|safe|truncate(600)}}
+					    		{{event.description|striptags|truncate(600)}}
 					    	</p>
 					</div>
 				</a>
@@ -184,7 +184,8 @@ jQuery(document).ready(function() {
                     <div class="item active">
                         <div class="row">
                         {%for partner in partners%}
-                            <div class="col-sm-2 col-xs-6"><a href="{{partner.url}}"><img src="{{partner.feature_image}}" alt="Image" class="img-responsive"></a>
+                            <div class="col-sm-2 col-xs-6"><a href="{{partner.url}}">
+                            <img src="{{partner.feature_image}}" alt="Image" class="img-responsive"></a>
                             </div>
                         {%endfor%}
                         </div>
