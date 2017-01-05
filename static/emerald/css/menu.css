@@ -20,7 +20,7 @@ h1 {
   text-align: center;
   font-size: 30px;
   line-height: 70px;
-  font-family: 'roboto', sans-serif;
+  font-family: 'Cabin Condensed', sans-serif;
 }
 
 #container {
@@ -36,7 +36,7 @@ p { text-align: center; }
 nav {
   margin: 0;
   padding: 0;
-  background-color: #282830;
+  background-color: #444B54;
 }
 
 #logo {
@@ -67,7 +67,7 @@ nav ul li {
   margin: 0px;
   display: inline-block;
   float: left;
-  background-color: #282830;
+  background-color: #444B54;
 }
 
 nav a {
@@ -114,15 +114,10 @@ nav ul ul ul li {
 }
 label > a:after { content: '+'; }
 /*li > a:after { content: ' +'; }*/
-
 li > a:only-child:after { content: ''; }
-
-
 /* Media Queries
 --------------------------------------------- */
-
 @media all and (max-width : 768px) {
-
 #logo {
   display: block;
   padding: 0;
@@ -196,4 +191,20 @@ nav ul li {
   width: 94%;
 }
 
+}
+
+.carousel-control.left {
+  margin-top: -46px;
+  background-image: linear-gradient(to right,rgba(0, 0, 0, 0) 0,rgba(0,0,0,.0001) 100%);
+}
+.carousel-control.right {
+  margin-top: -46px;
+  background-image: linear-gradient(to right,rgba(0, 0, 0, 0) 0,rgba(0,0,0,.0001) 100%);
+}
+.column a{
+  color:white !important;
+  display: inline !important;
+}
+.column a:hover{
+  color:#EEE !important;
 }

@@ -130,7 +130,7 @@ div.fadeShow-container
 }
 
 .hovereffect h2 {
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   color: #fff;
   font-weight: bold;
   text-align: center;

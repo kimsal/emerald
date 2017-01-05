@@ -203,7 +203,7 @@ a.list-group-item.active,[class*='-info'] {
   font-size: 24px;
   line-height: 1.1;
   display: block;
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Cabin Condensed', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 300;
   margin: 10px 0 0;
 }
@@ -222,12 +222,12 @@ a.list-group-item.active,[class*='-info'] {
   display: block;
 }
 .intro-header {
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'Cabin Condensed', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 24px;
   font-weight: 600;
 }
 .intro-header {
-  font-family: 'Lora', 'Times New Roman', serif;
+  font-family: 'Cabin Condensed', 'Times New Roman', serif;
   font-style: italic;
   font-weight: 300;
   font-size: 20px;
@@ -259,7 +259,7 @@ a.list-group-item.active,[class*='-info'] {
 .add-contact{
   font-size: 23px;
   color: #ff5f00;
-  font-family: Tungsten Rounded A,Tungsten Rounded B,Avenir Next,Avenir,Helvetica,Arial,sans-serif;
+  font-family: "Cabin Condensed",Tungsten Rounded B,Avenir Next,Avenir,Helvetica,Arial,sans-serif;
   font-weight: 500;
   line-height: 1.1;
   text-transform: uppercase;

@@ -1,7 +1,7 @@
 footer {
 	background-color: #444B54;
     color:#ddd;
-    min-height:200px;
+    min-height:140px;
     padding-top:20px;
     padding-bottom:40px;
 }
@@ -16,7 +16,7 @@ footer .nav>li>a:hover {
 	color:#fff;
 }
 .footer_logo{
-  width     :200px;
+  /*width     :200px;*/
   height: auto;
 }
 .hr_footer{
