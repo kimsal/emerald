@@ -113,34 +113,26 @@
 		<div class="row">
 			{%set help=0 %}
 			{%for member in members%}
-				{%set help=help+1%}
-	        	{%if help==3%}
-	        		<div class="clearfix"></div>
-	        		{%set help=1%}
-	        	{%endif%}
-	        <div class="col-sm-6 col-xs-12 no">
-
-	            <div id="tb-testimonial" class="testimonial testimonial-danger-filled">
-	                <div class="testimonial-section"  style="background-color:#DC9027;">
-	                    {{member.detail}}
-	                </div>
-	                <div class="testimonial-desc">
-	                	{%if member.feature_image==''%}
-	                		 <img src="/static/images/no profile.png" alt="" />
+				<a href="/member/{{member.slug}}">
+					{%set help=help+1%}
+		        	{%if help==3%}
+		        		<div class="clearfix"></div>
+		        		{%set help=1%}
+		        	{%endif%}
+			        <div class="col-sm-4 col-xs-12 no">
+			        	{%if member.feature_image==''%}
+	                		 <img src="/static/images/no profile.png" alt="" style="width:100%;" />
 	                	{%else%}
-		                    <img src="{{member.feature_image
-		                    }}" alt="" />
+		                    <img src="{{member.feature_image}}" alt=""  style="width:100%;"/>
 	                    {%endif%}
-	                    <div class="testimonial-writer">
-	                    	<div class="testimonial-writer-name">{{member.name}}</div>
-	                    	<div class="testimonial-writer-designation">{{member.possition}}</div>
-	                    	<!-- <a href="#" class="testimonial-writer-company">Touch Base Inc</a> -->
-	                    </div>
-	                </div>
-	            </div>   
-			</div>
+			           	<div class="testimonial-writer-name" style="position:absolute;margin-top:-40px;background-color:#444B54;color:white;padding:10px;">
+			           		{{member.name}}
+			           	</div>
+					</div>
+				</a>
 			{%endfor%}
 		</div>
+		<div style="height:10px;"></div>
 	</div>
 	<!--end box team-->
 	</div>

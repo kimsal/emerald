@@ -1199,6 +1199,11 @@ def index(pagination=1):
 	members=Member.query.order_by(Member.id.desc()).all()
 	communties= Post.query.filter_by(category_id=3).all()
 	return render_template(template+'/index.html',communties=communties,members=members,events=events,locations=locations,form=form,page_name='home',posts_top=posts_top,home_posts=home_posts,posts_bottom = posts_bottom,pagin=int(pagin),current_pagin=int(pagination))
+@app.route('/member/<slug>')
+@app.route('/member/<slug>/')
+def single_member(slug=''):
+	members = Member.query.filter_by(slug=slug)
+	return render_template(template+'/single-member.html',members=members)
 @app.route('/<slug>')
 @app.route('/<slug>/')
 @app.route('/<slug>/<pagination>')
