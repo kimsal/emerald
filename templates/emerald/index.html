@@ -38,7 +38,7 @@
 		    	<div class="hovereffect">
 		        	<img class="img-responsive" src="{{post.feature_image}}" alt=""  style="width:100%;cursor: pointer !important;">
 			        <div class="" style="color:#337ab7;cursor: pointer !important;">
-			           <h2 class=" mytitle">{{post.title}}</h2>
+			           <h2 class=" mytitle" >{{post.title}}</h2>
 			        </div>
 		    	</div>
 		    	</a>
@@ -176,28 +176,44 @@ jQuery(document).ready(function() {
 
 
     <div class="col-md-12" style="background-color: #fff; margin-bottom: 15px;">
-            <div id="myCarousel" class="carousel slide">
-                
-                <!-- Carousel items -->
-                <h1 class="v-center">Partners & Companies</h1>
-                <div class="carousel-inner">
-                    <div class="item active">
-                        <div class="row">
-                        {%for partner in partners%}
-                            <div class="col-sm-2 col-xs-6"><a href="{{partner.url}}">
-                            <img src="{{partner.feature_image}}" alt="Image" class="img-responsive"></a>
-                            </div>
-                        {%endfor%}
-                        </div>
-                        <!--/row-->
-                    </div>
-                </div>
-                <!--/carousel-inner--> <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+        <div id="myCarousel" class="carousel slide">
+            
+            <!-- Carousel items -->
+            <h1 class="v-center">Partners & Companies</h1>
+            <div class="carousel-inner">
+            {%set help = 0%}
+            	{%for partner in partners%}
+            	{%set help= help+1%}
 
-                <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+            	{%if help == 1%}
+                	<div class="item active">
+                    <div class="row">
+                {%endif%}
+
+                 <div class="col-sm-2 col-xs-6">
+	                <a href="{{partner.url}}">
+	                <img src="{{partner.feature_image}}" alt="Image" class="img-responsive">
+	                </a>
+	                </div>
+                {%if help==6%}
+                    </div>
+                    </div>
+                    <div class="item">
+                    <div class="row">
+                {%endif%}
+                
+            {%endfor%}
+
+             </div>
             </div>
-            <!--/myCarousel-->
-            <div style="height:10px;"></div>
+                   
+            </div>
+            <!--/carousel-inner--> <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+        </div>
+        <!--/myCarousel-->
+        <div style="height:10px;"></div>
     </div>
 
 

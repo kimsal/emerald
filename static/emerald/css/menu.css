@@ -16,10 +16,10 @@ h3 a { color: #FFF; }
 /*a { color: #FFF; }*/
 
 h1 {
-  margin-top: 50px;
+  /*margin-top: 50px;*/
   text-align: center;
   font-size: 30px;
-  line-height: 70px;
+  /*line-height: 70px;*/
   font-family: 'Cabin Condensed', sans-serif;
 }
 

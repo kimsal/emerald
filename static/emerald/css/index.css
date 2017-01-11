@@ -531,3 +531,6 @@ h4{
 .mytitle,.no{
   font-size:25px !important;
 }
+p.description{
+  font-size: 18px !important;
+}
