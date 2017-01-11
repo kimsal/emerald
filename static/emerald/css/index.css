@@ -522,4 +522,12 @@ tr:nth-child(even){background-color: #f2f2f2;}
   text-align: center;
   text-transform: uppercase;
 }
-
+.no{
+  font-size: 25px;
+}
+h4{
+  font-size: 25px;
+}
+.mytitle,.no{
+  font-size:25px !important;
+}

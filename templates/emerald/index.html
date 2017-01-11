@@ -34,14 +34,14 @@
 		<hr>
 		{%for post in communties%}
 	  	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 padding ">
-  			<a href="/">
-	    	<div class="hovereffect">
-	        	<img class="img-responsive" src="{{post.feature_image}}" alt="" style="width:100%">
-		        <div class="overlay">
-		           <h2 class="no">{{post.title}}</h2>
-		        </div>
-	    	</div>
-	    	</a>
+  			<a href="/{{post.slug}}">
+		    	<div class="hovereffect">
+		        	<img class="img-responsive" src="{{post.feature_image}}" alt=""  style="width:100%;cursor: pointer !important;">
+			        <div class="" style="color:#337ab7;cursor: pointer !important;">
+			           <h2 class=" mytitle">{{post.title}}</h2>
+			        </div>
+		    	</div>
+		    	</a>
 		</div>
 		{%endfor%}	
 	</div>
@@ -61,7 +61,7 @@
 					</div>
 					<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 border" style="padding: 10px;padding-left:30px">
 					   
-					    	<h4 class="mytitle">
+					    	<h4 class="mytitle mytitle">
 					    		{{event.title}}
 					    	</h4>
 					    	<small style="color: #a8a6a6;">
@@ -71,7 +71,7 @@
 						    </small>
 						    <br>
 					    	<p class="" style="margin-top:5px;text-align:left;color:#000;font-size:17px">
-					    		{{event.description|striptags|truncate(600)}}
+					    		{{event.description|striptags|truncate(300)}}
 					    	</p>
 					</div>
 				</a>
@@ -87,12 +87,12 @@
 		<hr>
 	  	<div class="row">
 	  		{%for post in posts_top%}
-	  		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 padding ">
+	  		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 padding" style="padding:20px !important;cursor: pointer !important;">
 	  			<a href="/{{post.slug}}">
 		    	<div class="hovereffect">
-		        	<img class="img-responsive" src="{{post.feature_image}}" alt=""  style="width:100%">
-			        <div class="overlay">
-			           <h2 class="no">{{post.title}}</h2>
+		        	<img class="img-responsive" src="{{post.feature_image}}" alt=""  style="width:100%;cursor: pointer !important;">
+			        <div class="" style="color:#337ab7;cursor: pointer !important;">
+			           <h2 class=" mytitle">{{post.title}}</h2>
 			        </div>
 		    	</div>
 		    	</a>
@@ -118,11 +118,11 @@
     </div>
     <div class="col-md-3">
       <center><i class="fa fa-print fa-5x" aria-hidden="true"></i></center>
-      <p><b><center>Printer Machine</center></b> <br/> ( Standing right waiting for you to Print ) </p>
+      <p><b><center>Printer Machine</center></b> <br/> (Standing right waiting for you to Print) </p>
     </div>
     <div class="col-md-3">
       <center><i class="fa fa-retweet fa-5x" aria-hidden="true"></i></center>
-      <p><b><center>Greenery Balcony</center></b> <br/>( Breathe fresh air under the clear blue sky ) </p>
+      <p><b><center>Greenery Balcony</center></b> <br/>(Breathe fresh air under the clear blue sky)</p>
     </div>
     <div class="clearfix"></div>
      <div class="col-md-3">
@@ -179,7 +179,7 @@ jQuery(document).ready(function() {
             <div id="myCarousel" class="carousel slide">
                 
                 <!-- Carousel items -->
-                <h1 class="v-center">Partners</h1>
+                <h1 class="v-center">Partners & Companies</h1>
                 <div class="carousel-inner">
                     <div class="item active">
                         <div class="row">

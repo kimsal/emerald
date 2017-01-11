@@ -131,8 +131,8 @@ div.fadeShow-container
 
 .hovereffect h2 {
   /*text-transform: uppercase;*/
-  color: #fff;
-  font-weight: bold;
+  /*color: #fff;*/
+  /*font-weight: bold;
   text-align: center;
   position: relative;
   font-size: 17px;
@@ -141,16 +141,16 @@ div.fadeShow-container
   -ms-transform: translateY(45px);
   transform: translateY(45px);
   -webkit-transition: all 0.4s ease-in-out;
-  transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;*/
 }
 
-.hovereffect:hover h2 {
+/*.hovereffect:hover h2 {
   -webkit-transform: translateY(5px);
   -ms-transform: translateY(5px);
   transform: translateY(5px);
   font-weight: bold;
 }
-
+*/
 .hovereffect a.info {
   display: inline-block;
   text-decoration: none;
