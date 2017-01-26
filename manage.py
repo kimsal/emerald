@@ -12,7 +12,6 @@ from flask.json import jsonify
 import math
 from models import *
 from forms import *
-from models import *
 from random import randint
 import logging
 logging.basicConfig()
