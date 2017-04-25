@@ -1,8 +1,8 @@
 {% include template_name+'/header.html' %} 
 
-
+<br><br>
 <div class="col-sm-12"></div>
-	<div class="container">
+	<div class="container" style="max-width: 960px;">
 		<div class="row">
 			{%set help=0 %}
 			{%for member in members%}
@@ -12,21 +12,20 @@
 		        		<div class="clearfix"></div>
 		        		{%set help=1%}
 		        	{%endif%}
-			        <div class="col-sm-4 col-xs-12 no">
+			        <div class="col-sm-3 col-xs-12 no">
 			        	{%if member.feature_image==''%}
 	                		 <img src="/static/images/no profile.png" alt="" style="width:100%;" />
 	                	{%else%}
 		                    <img src="{{member.feature_image}}" alt=""  style="width:100%;"/>
 	                    {%endif%}
-	                    <div class="testimonial-writer-name" style="position:absolute;margin-top:-40px;background-color:#444B54;color:white;padding:10px;">
+	                    <div class="testimonial-writer-name possitionMem" style="background-color:#444B54;color:white;padding:20px 15px; ">
 			           		{{member.possition}}
 			           	</div>
 					</div>
-					<div class="col-sm-8 col-xs-12 no" style="color:black">	
-						<h4 style="margin-bottom:0px;">{{member.name}}</h4>
-						<i style="color:#999;margin-top:4px;">{{member.possition}}</i> 
-						<br/><br/>
-						{{member.detail|safe}}
+					<div class="col-sm-9 col-xs-12 no" style="color:black">	
+						<h4 style="margin-bottom:0px;" class="memberName">{{member.name}}</h4>
+						<i class="memberPos">{{member.possition}}</i> 
+						<p class="memberDec">{{member.detail|safe}}</p>
 					</div>
 				</a>
 			{%endfor%}
@@ -35,6 +34,7 @@
 	</div>
 	<!--end box team-->
 	</div>
+<br>
 
 
 
@@ -95,6 +95,30 @@
 </script>
 	</section>
 
-{% include template_name+'/footer.html' %} 
+<footer id="footer" class="footerFixed">
+  <div class="container">
+    <div class="row">    
+      <div class="col-xs-12">          
+        <center>
+          <ul class="nav">
+            <li>
+            <a href="/">
+              <img src="/static/{{template_name}}/images/logo-small.png" class="footer_logo img-responsive brand" style="height:70px;">
+            </a>
+              All rights reserved | © Copyright 2017 <a href="/" class="right">Emerald Hub</a>
+          <br/>
+
+          </ul> 
+        </center>
+      </div>
+    </div><!--/row-->
+  </div>
+</footer>
+<!--script for grid image in single page-->
+<script type="text/javascript">
+  $('#feature_image').css('display','none');
+</script>
+</body>
+</html>
 
 

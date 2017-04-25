@@ -1,11 +1,15 @@
+
+body{
+  font-family: Poppins;
+}
 @import url('http://www.justinaguilar.com/animations/css/animations.css');
 html,body {
-	height:100%;
+  height:100%;
     background:center no-repeat fixed url('images/bg_iphone.png');
 }
 
 .icon-bar {
-	background-color:#fff;
+  background-color:#fff;
 }
 
 .span-head{
@@ -14,24 +18,68 @@ html,body {
 
 
 section {
-	padding-top: 0px;  
+  padding-top: 0px;  
   padding-bottom:0px; 
 }
 .v-center {
     font-size:30px;
     color: #dd9933;
 }
+.v-center1{
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 20px !important;
+  text-transform: uppercase;
+}
+.hrTitle{
+  width: 10%;
+  margin: 5px;
+  text-align: center;
+  border-color: #dd9933;
+}
+.backgroungColor{
+  background-color: #f5f5f5;
+  padding: 15px 100px;
+}
+.backgroungColor1{
+  background-color: #f5f5f5;
+  padding: 30px 50px;
+}
+.memberDec{
+  font-size: 20px;
+  text-align: left;
+  padding: 0px 30px;
+}
+.memberName{
+  padding: 0px 30px;
+  font-weight: bold;
+  font-size: 25px !important;
+  color: #dd9933;
+}
+.memberPos{
+  padding: 0px 60px;
+  font-weight: bold;
+  font-size: 15px;
+  margin-top: -15px !important;
+  color:#999;
+}
+.possitionMem{
+  font-size: 14px;
+}
   
+
 .well {
-	border-color:transparent;
+  border-color:transparent;
 }
 
 a.list-group-item.active,[class*='-info'] {
-	background-color: #168ccc;
+  background-color: #168ccc;
   color:#fff;
 }
   
-
+.container{
+  max-width: 960px !important;
+}
 .description{
   font-size: 20px;
   font-weight: 500px;
@@ -96,6 +144,15 @@ a.list-group-item.active,[class*='-info'] {
   .h1-title {
     font-size: 20px;
   }
+  .footerFixed{
+    position: inherit !important;
+    bottom: 0px;
+    width: 100%;
+  }
+  .backgroungColor {
+    background-color: #f5f5f5;
+    padding: 20px;
+  }
   .intro-header {
     height: 60%;
   }
@@ -129,7 +186,7 @@ a.list-group-item.active,[class*='-info'] {
   font-size: 24px;
   line-height: 1.1;
   display: block;
-  font-family: 'Cabin Condensed', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: Poppins;
   font-weight: 300;
   margin: 10px 0 0;
 }
@@ -148,12 +205,12 @@ a.list-group-item.active,[class*='-info'] {
   display: block;
 }
 .intro-header {
-  font-family: 'Cabin Condensed', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: Poppins;
   font-size: 24px;
   font-weight: 600;
 }
 .intro-header {
-  font-family: 'Cabin Condensed', 'Times New Roman', serif;
+  font-family: Poppins;
   font-style: italic;
   font-weight: 300;
   font-size: 20px;
@@ -173,7 +230,7 @@ a.list-group-item.active,[class*='-info'] {
 }
 
 .bg-space{
-    background-color: #f9f9f9;
+    background-color: #fff;
 }
 
 /*pricing*/
@@ -264,6 +321,14 @@ a:hover{
 .hidden {
   display: block ! important;
 }
+.mytitle{
+  font-weight: bold;
+  font-size: 18px !important;
+  color: #dd9933;
+}
+.singlePost{
+  line-height: 80px;
+}
 .title-event{
   font-size: 16px;
   color: #FD5B03;
@@ -276,8 +341,17 @@ a:hover{
   font-size: 14px;
   color: #D4D4D4;
 }
+.indexBack{
+  background-color: #f5f5f5 !important;
+  padding: 15px !important;
+}
 .join{
   font-weight: bold;
+}
+.footerFixed{
+  position: fixed;
+  bottom: 0px;
+  max-width: 100%;
 }
 /*modal*/
 .modal-header {
@@ -468,9 +542,9 @@ tr:nth-child(even){background-color: #f2f2f2;}
 .title-tr th{
   padding: 10px 10px;
   background-color: #d98e28;
-  font-size: 12px;
+  font-size: 14px;
   color: #000;
-  font-weight: bold;
+  font-family: Poppins;
 }
 .title-under{
   font-weight: bold;
@@ -503,6 +577,7 @@ tr:nth-child(even){background-color: #f2f2f2;}
   font-size: 15px;
   line-height: 20px;
 }
+
 .JoinSubmite{
   width: 100%;
   border-radius: 0px;
@@ -528,9 +603,18 @@ tr:nth-child(even){background-color: #f2f2f2;}
 h4{
   font-size: 25px;
 }
-.mytitle,.no{
+.no{
   font-size:25px !important;
 }
 p.description{
   font-size: 18px !important;
+}
+
+.textDesc{
+  text-align: left;
+  font-size: 16px;
+  font-family: Poppins;
+}
+body{
+  font-family: Poppins !important;
 }

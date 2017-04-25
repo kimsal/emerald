@@ -3,6 +3,9 @@ html,body {
 	height:100%;
     background:center no-repeat fixed url('images/bg_iphone.png');
 }
+body,p,span{
+  font-family: Poppins !important;
+}
 
 .icon-bar {
 	background-color:#fff;

@@ -1,21 +1,24 @@
 {% include template_name+'/header.html' %} 
 
+<br>
 <section class="container-fluid bg-space" style="margin-top:-10px;" id="section2">
 	<div class="container">
-		<h1 class="v-center">{{category_name}}</h1>
-		<hr>
+		<h1 class="v-center v-center1">{{category_name}}</h1>
+		<center><hr class="hrTitle"></center>
+		<br>
+
 	  	<div class="row">
 	  		{%for post in posts%}
-	  		<a href="/{{post.slug}}" target="_blank" class="col-xs-12 col-sm-12" style="margin-bottom:10px;">
-					<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border" style="padding: 0px;">
-					    	<img src="{{post.feature_image}}" class="img-responsive" style="padding:0px;margin-top: 13px;width:100%">
+	  		<a href="/{{post.slug}}" target="_blank" class="col-xs-12 col-sm-12 indexBack" style="margin-bottom:10px;">
+					<div class="col-xs-12 col-sm-3 col-md-3 border" style="padding: 0px;">
+					    	<img src="{{post.feature_image}}" class="img-responsive" style="padding:0px;width:100%">
 					</div>
-					<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 border" style="padding: 10px;padding-left:30px">
+					<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 border" style="padding: 10px;padding-left:30px">
 					   
 					    	<h4 class="mytitle">
 					    		{{post.title}}
 					    	</h4>
-					    	<p class="" style="margin-top:5px;text-align:left;color:#000;font-size:17px">
+					    	<p class="" style="margin-top:5px;text-align:left;color:#000;font-size:14px">
 					    		{{post.description|striptags|truncate(300)}}
 					    	</p>
 					</div>
