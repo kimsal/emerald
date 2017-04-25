@@ -1,3 +1,4 @@
+
 {% include template_name+'/header.html' %} 
 <style type="text/css">
 	p{
@@ -150,18 +151,11 @@
 	<div class="row" style="padding: 10px;">
 	<center><h6 class=" v-center v-center1 ">Partners & Companies</h6></center>
 	<center><hr class="hrTitle"></center>
+	{%for partner in partners%}
 		<div class="hidden-xs col-md-3 indexBack">
-			<img src="../static/{{template_name}}/images/logo.jpg" class="img-responsive">
+			<img src="{{partner.feature_image}}" class="img-responsive">
 		</div>
-		<div class="hidden-xs col-md-3 indexBack">
-			<img src="../static/{{template_name}}/images/logo.jpg" class="img-responsive">
-		</div>
-		<div class="hidden-xs col-md-3 indexBack">
-			<img src="../static/{{template_name}}/images/logo.jpg" class="img-responsive">
-		</div>
-		<div class="hidden-xs col-md-3 indexBack">
-			<img src="../static/{{template_name}}/images/logo.jpg" class="img-responsive">
-		</div>
+	{%endfor%}
 	</div>
 </div>
 </section>
