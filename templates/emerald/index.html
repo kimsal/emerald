@@ -1,3 +1,4 @@
+
 {% include template_name+'/header.html' %} 
 <style type="text/css">
 	p{
@@ -30,12 +31,12 @@
 <section class="container-fluid bg-space" style="margin-top:-10px;" id="section4">
 
 	<div class="container " id="events">
-		<h1 class="v-center">COMMUNITY</h1>
-		<hr>
+		<h1 class="v-center v-center1">COMMUNITY</h1>
+		<center><hr class="hrTitle"></center>
 		{%for post in communties%}
 	  	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 padding ">
   			<a href="/{{post.slug}}">
-		    	<div class="hovereffect">
+		    	<div class="hovereffect indexBack">
 		        	<img class="img-responsive" src="{{post.feature_image}}" alt=""  style="width:100%;cursor: pointer !important;">
 			        <div class="" style="color:#337ab7;cursor: pointer !important;">
 			           <h2 class=" mytitle" >{{post.title}}</h2>
@@ -50,18 +51,18 @@
 
 	<div class="container " id="events">
 		{% if events.count > 0 %}
-		<h1 class="v-center">EVENT</h1>
+		<h1 class="v-center v-center1">EVENTS</h1>
 		{%endif%}
-		<hr>
+		<center><hr class="hrTitle"></center>
 	  	<!--event -->
 	  	{% for event in events %}
-				<a href="/{{event.slug}}" target="_blank" class="col-xs-12" style="margin-bottom:10px;">
+				<a href="/{{event.slug}}" target="_blank" class="col-xs-12 indexBack" style="margin-bottom:10px;">
 					<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 border" style="padding: 0px;">
-					    	<img src="{{event.feature_image}}" class="img-responsive" style="padding:0px;margin-top: 13px;width:100%">
+					    	<img src="{{event.feature_image}}" class="img-responsive" style="padding:0px;width:100%">
 					</div>
 					<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 border" style="padding: 10px;padding-left:30px">
 					   
-					    	<h4 class="mytitle mytitle">
+					    	<h4 class="mytitle">
 					    		{{event.title}}
 					    	</h4>
 					    	<small style="color: #a8a6a6;">
@@ -83,13 +84,13 @@
 </section>
 <section class="container-fluid bg-space" style="margin-top:-10px;" id="section2">
 	<div class="container">
-		<h1 class="v-center">BLOG</h1>
-		<hr>
+		<h1 class="v-center v-center1">BLOGS</h1>
+		<center><hr class="hrTitle"></center>
 	  	<div class="row">
 	  		{%for post in posts_top%}
-	  		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 padding" style="padding:20px !important;cursor: pointer !important;">
+	  		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 padding" style="padding:5px !important;cursor: pointer !important;">
 	  			<a href="/{{post.slug}}">
-		    	<div class="hovereffect">
+		    	<div class="hovereffect indexBack">
 		        	<img class="img-responsive" src="{{post.feature_image}}" alt=""  style="width:100%;cursor: pointer !important;">
 			        <div class="" style="color:#337ab7;cursor: pointer !important;">
 			           <h2 class=" mytitle">{{post.title}}</h2>
@@ -103,46 +104,60 @@
 </section>
 <section class="container-fluid bg-space" style="margin-top:-10px;" id="section4">
 <div class="container cohub-features">
-	<h1 class="v-center">Why choose Emerald Hub?</h1>
+	<h1 class="v-center v-center1">Why choose Emerald Hub?</h1>
+	<center><hr class="hrTitle"></center>
 	<br>
-    <div class="col-md-3">
-      <center><i class="fa fa-clock-o fa-5x" aria-hidden="true"></i></center>
-      <p><b><center>24 Hours Access</center></b>
-      <br/>
-       ( Because We live in the different part of the world )
-</p>
-    </div>
-    <div class="col-md-3">
-      <center><i class="fa fa-wifi fa-5x" aria-hidden="true"></i></center>
-      <p><b><center>High Speed Internet</center></b> <br/> ( Up to 5.5 Mbps for each user ) </p>
-    </div>
-    <div class="col-md-3">
-      <center><i class="fa fa-print fa-5x" aria-hidden="true"></i></center>
-      <p><b><center>Printer Machine</center></b> <br/> (Standing right waiting for you to Print) </p>
-    </div>
-    <div class="col-md-3">
-      <center><i class="fa fa-retweet fa-5x" aria-hidden="true"></i></center>
-      <p><b><center>Greenery Balcony</center></b> <br/>(Breathe fresh air under the clear blue sky)</p>
-    </div>
-    <div class="clearfix"></div>
-     <div class="col-md-3">
-      <center><i class="fa fa-coffee fa-5x" aria-hidden="true"></i></center>
-      <p><b><center>Hub Cafe</center> </b><br/>( Satisfy with every Cup of Coffee in the morning ) </p>
-    </div>
-     <div class="col-md-3">
-      <center><i class="fa fa-magic fa-5x" aria-hidden="true"></i></center>
-      <p><b><center>Smoking Zone </center></b><br/>( Smoking never be a problem ) 
- 	</p>
-    </div>
-     <div class="col-md-3">
-      <center><i class="fa fa-cutlery fa-5x" aria-hidden="true"></i></center>
-      <p><b><center>Shared Kitchen </center></b><br/>( Free coffee , tea , hot and cold water )  </p>
-    </div>
-     <div class="col-md-3">
-      <center><i class="fa fa-car fa-5x" aria-hidden="true"></i></center>
-      <p><b><center>Wide Parking Lot </center></b><br/>( Parking your vehicles in a fairly large space )  </p>
-    </div>
+	<div class="row" style="padding: 10px;">
+	    <div class="col-md-3 indexBack">
+	      <center><i class="fa fa-clock-o fa-5x" aria-hidden="true"></i></center>
+	      <p><b><center>24 Hours Access</center></b>
+	      <br/>
+	       ( Because We live in the different part of the world )
+		  </p>
+	    </div>
+	    <div class="col-md-3 indexBack">
+	      <center><i class="fa fa-wifi fa-5x" aria-hidden="true"></i></center>
+	      <p><b><center>High Speed Internet</center></b> <br/> ( Up to 5.5 Mbps for each user ) </p>
+	    </div>
+	    <div class="col-md-3 indexBack">
+	      <center><i class="fa fa-print fa-5x" aria-hidden="true"></i></center>
+	      <p><b><center>Printer Machine</center></b> <br/> (Standing right waiting for you to Print) </p>
+	    </div>
+	    <div class="col-md-3 indexBack">
+	      <center><i class="fa fa-retweet fa-5x" aria-hidden="true"></i></center>
+	      <p><b><center>Greenery Balcony</center></b> <br/>(Breathe fresh air under the clear blue sky)</p>
+	    </div>
+	    <div class="clearfix"></div>
+	     <div class="col-md-3 indexBack">
+	      <center><i class="fa fa-coffee fa-5x" aria-hidden="true"></i></center>
+	      <p><b><center>Hub Cafe</center> </b><br/>( Satisfy with every Cup of Coffee in the morning ) </p>
+	    </div>
+	     <div class="col-md-3 indexBack">
+	      <center><i class="fa fa-magic fa-5x" aria-hidden="true"></i></center>
+	      <p><b><center>Smoking Zone </center></b><br/>( Smoking never be a problem ) 
+	 	</p>
+	    </div>
+	     <div class="col-md-3 indexBack">
+	      <center><i class="fa fa-cutlery fa-5x" aria-hidden="true"></i></center>
+	      <p><b><center>Shared Kitchen </center></b><br/>( Free coffee , tea , hot and cold water )  </p>
+	    </div>
+	     <div class="col-md-3 indexBack">
+	      <center><i class="fa fa-car fa-5x" aria-hidden="true"></i></center>
+	      <p><b><center>Wide Parking Lot </center></b><br/>( Parking your vehicles in a fairly large space )  </p>
+	    </div>
+	</div>
   </div>
+  <div class="container">
+	<div class="row" style="padding: 10px;">
+	<center><h6 class=" v-center v-center1 ">Partners & Companies</h6></center>
+	<center><hr class="hrTitle"></center>
+	{%for partner in partners%}
+		<div class="hidden-xs col-md-3 indexBack">
+			<img src="{{partner.feature_image}}" class="img-responsive">
+		</div>
+	{%endfor%}
+	</div>
+</div>
 </section>
 
 <!--smooth-->
@@ -173,48 +188,6 @@ jQuery(document).ready(function() {
   width:5%;
 }
 </style>
-
-
-    <div class="col-md-12" style="background-color: #fff; margin-bottom: 15px;">
-        <div id="myCarousel" class="carousel slide">
-            
-            <!-- Carousel items -->
-            <h1 class="v-center">Partners & Companies</h1>
-            <div class="carousel-inner">
-            {%set help = 0%}
-        	{%for partner in partners%}
-        		{%set help= help+1%}
-
-        		{%if help == 1%}
-                	<div class="item active">
-                    <div class="row">
-                {%endif%}
-
-                 <div class="col-sm-2 col-xs-6">
-	                <a href="{{partner.url}}">
-	                <img src="{{partner.feature_image}}" alt="Image" class="img-responsive">
-	                </a>
-	                </div>
-                {%if help==6%}
-                    </div>
-                    </div>
-                    <div class="item">
-                    <div class="row">
-                {%endif%}
-                
-            {%endfor%}
-
-             </div>
-            </div>
-                   
-            </div>
-            <!--/carousel-inner--> <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-
-            <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
-        </div>
-        <!--/myCarousel-->
-        <div style="height:10px;"></div>
-    </div>
 
 
 <script type="text/javascript">

@@ -4,27 +4,26 @@
 		text-align: left;
 	}
 </style>
+<br>
 <div class="contact">
 	<div class="container">
-		<div class="row">
-      <div class="hidden-xs col-sm-2 col-md-2 col-lg-2">
-        
-      </div>
+		<div class="row indexBack">
       	{%for post in post_object %}
-        <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
-          <br><br>
-          <h2 style="color:black;">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding: 15px 80px;">
+          <h5 style="color:#dd9933; font-weight: bold; font-size: 20px; text-align: center; margin: 0px;">
           {{post.title}}
-          </h2>
-
+          <center><hr class="hrTitle"></center>
+          </h5>
+          <p style="margin-top: 15px;">
           {{post.description|safe}}
+          </p>
 
+          <br><br>
           <!--grid image post-->
           <div id="gallery2"></div>
           <!--end grid image post-->
 
         </div>
-      <div class="hidden-xs col-sm-2 col-md-2 col-lg-2"></div>
     </div>
 </div>
 </div>

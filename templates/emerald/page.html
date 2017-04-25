@@ -18,16 +18,19 @@
 </style>
 <!-- <section class="container-fluid bg-space" > -->
 	{%for page in page_object%}
-	<section class="container-fluid" >
-		<div class="container">
+	<section class="" >
+		<div class="container" style="max-width: 960px;">
 			<div class="hidden-xs col-md-2 col-lg-2 col-sm-2"></div>
-			<div class="col-md-8 col-lg-8 col-sm-8">
-			<h1 class="v-center" style="margin:0px;">{{page.title}}</h1>
-				<p class="description">{{page.description|safe}} </p>
+			<div class="col-md-12 col-lg-12 col-sm-12" style="padding: 0px;">
+			<h1 class="v-center v-center1 " style="margin:0px;">{{page.title}}</h1>
+				<center><hr class="hrTitle"></center>
+				<br>
+				<div class="backgroungColor">
+					<p class="description" style="margin: 0px;">{{page.description|safe}} </p>
+				</div>
 			</div>
-			<div class="hidden-xs col-md-2 col-lg-2 col-sm-2"></div>
 		</div>
-		{%if page.title=="ABOUT"%}
+		{%if page.title=="ABOUT US"%}
 			<center>
 				<label class="show-label" data-toggle="modal" data-target="#myModal">
 					<!-- <button class="btn btn-warning" class="btn-book" style="width:120px;height:50px;border-radius:2px;">
@@ -105,10 +108,12 @@
 <div class="col-sm-12"></div>
   	<!--Team-->
 	<div class="row" id="members">
-		<h1 class="v-center">TEAM</h1>
-	<hr>
+		<h1 class="v-center v-center1 ">TEAM Members</h1>
+		<center><hr class="hrTitle"></center>
 	<!--box for team-->
-	<div class="container">
+	<br>
+	<div class="container" style="max-width: 960px;">
+		<div class="backgroungColor1">
 		<div class="row">
 			{%set help=0 %}
 			{%for member in members%}
@@ -119,7 +124,7 @@
 		        		<div class="clearfix"></div>
 		        		{%set help=1%}
 		        	{%endif%}
-			        <div class="col-sm-3 col-xs-12 no">
+			        <div class="col-sm-3 col-xs-12 no" style="padding: 10px;">
 			        	{%if member.feature_image==''%}
 	                		 <img src="/static/images/no profile.png" alt="" style="width:100%;" />
 	                	{%else%}
@@ -131,6 +136,7 @@
 					</div>
 				</a>
 			{%endfor%}
+		</div>
 		</div>
 		<div style="height:10px;"></div>
 	</div>
@@ -197,7 +203,32 @@
 		{%endif%}
 	</section>
 	{%endfor%}
+<br>
 
-{% include template_name+'/footer.html' %} 
+<footer id="footer">
+  <div class="container">
+    <div class="row">    
+      <div class="col-xs-12">          
+        <center>
+          <ul class="nav">
+            <li>
+            <a href="/">
+              <img src="/static/{{template_name}}/images/logo-small.png" class="footer_logo img-responsive brand" style="height:70px;">
+            </a>
+              All rights reserved | © Copyright 2017 <a href="/" class="right">Emerald Hub</a>
+          <br/>
+
+          </ul> 
+        </center>
+      </div>
+    </div><!--/row-->
+  </div>
+</footer>
+<!--script for grid image in single page-->
+<script type="text/javascript">
+  $('#feature_image').css('display','none');
+</script>
+</body>
+</html>
 
 
