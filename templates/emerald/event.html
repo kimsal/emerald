@@ -6,7 +6,7 @@
 	}
 </style>
 {%for event in event_object%}
-<div class="container bg-overlay">
+<div class="bg-overlay">
   <div class="row text-center">
       <br><br><br>
       <h2><b>
@@ -17,32 +17,25 @@
 
 <section class="content-builder">
   <div class="container">
-      <div class="col-md-2 col-lg-2 hidden-xs col-sm-2">
-
-      </div>
-      <div class="col-md-8 col-lg-8 col-xs-12 col-sm-8">
-          <br><br>
+      <div class="">
+        <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12 eventBack">
           <div class="list-group" style="border-radius:0px;">
             <a href="" class="list-group-item" style="margin-top:20px;">
-              <h3 class="list-group-item-heading"><b>Date:</b></h3>
-              <br>
-              <p class="list-group-item-text description">
-              {{event.date}}</p>
+              <span><h6 class="list-group-item-heading date1"><b>Date:</b></h6></span>
+              <span class="dateTime">{{event.date}}</span>
             </a>
            
 
             <a href="" class="list-group-item">
-              <h3 class="list-group-item-heading"><b>Detail:</b></h3>
+              <h3 class="list-group-item-heading date1"><b>Detail:</b></h3>
               <br>
               <div class="list-group-item-text description">
               {{event.description|safe}}
               </div>
             </a>
           </div>
+        </div>
           <!--end map-->
-      </div>
-      <div class="col-md-2 col-lg-2 hidden-xs col-sm-2">
-
       </div>
   </div>
 </section>

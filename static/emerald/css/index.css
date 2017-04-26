@@ -351,7 +351,41 @@ a:hover{
 .footerFixed{
   position: fixed;
   bottom: 0px;
-  max-width: 100%;
+  max-width: 100% !important;
+  right: 0px !important;
+  left: 0px !important;
+}
+p{
+  margin-top: 2px !important;
+  margin-bottom: 2px !important;
+}
+.eventBack{
+  background-color: #f5f5f5 !important;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  padding: 15px 80px;
+}
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: transparent !important;
+    border: 0px solid #ddd;
+}
+.date1{
+  font-weight: bold;
+  color: #dd9933 !important;
+  font-size: 18px;
+}
+.dateTime{
+  font-size: 20px !important;
+  margin-top: 25px;
+}
+a.list-group-item:focus, a.list-group-item:hover, button.list-group-item:focus, button.list-group-item:hover {
+    color: #555;
+    text-decoration: none;
+    background-color: transparent !important;
 }
 /*modal*/
 .modal-header {
