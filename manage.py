@@ -229,6 +229,9 @@ def admin_member(pagination=1,action='',slug=''):
 @auth.login_required
 def admin_event(pagination=1,action='',slug=''):
 	form = EventForm()
+	now = str(datetime.now())
+	now= now.replace(':',"",10).replace(' ','',4).replace('.','',5).replace('-','',5)
+	
 	if action=='add':
 		#add event
 		# return str(request.method)
@@ -236,8 +239,16 @@ def admin_event(pagination=1,action='',slug=''):
 			return render_template("admin/form/event.html",form=form)
 		else:
 			#try:
-			filename=str(request.form['txt_temp_image'])
-			event = Event(request.form['title'],request.form['description'],request.form['date'],filename,request.cookies.get('blog_id'))
+			# filename=str(request.form['txt_temp_image'])
+			f = request.files['feature_image']
+			help = secure_filename(f.filename)
+			filename=now+'-'+secure_filename(f.filename)
+			#upload feature image
+			if help!='':
+				f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+			else:
+				filename=''
+			event = Event(request.form['title'],request.form['description'],filename,request.cookies.get('blog_id'),0)
         	# return str('event')
         	status = Event.add(event)
 	        if not status:
@@ -256,7 +267,16 @@ def admin_event(pagination=1,action='',slug=''):
 			return render_template("admin/form/event.html",form=form,events=events)
 		else:
 			try:
-				events.update({"slug" : slugify(request.form['title']) , "title" : request.form['title'],'description':request.form['description'],'feature_image':request.form['txt_temp_image'],'date':request.form['date'] })
+				f = request.files['feature_image']
+				help = secure_filename(f.filename)
+				filename=now+'-'+secure_filename(f.filename)
+				#upload feature image
+				if help=="":
+					events.update({"slug" : slugify(request.form['title']) , "title" : request.form['title'],'description':request.form['description']})
+				else:
+					f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+					events.update({"slug" : slugify(request.form['title']) , "title" : request.form['title'],'description':request.form['description'],'feature_image':filename,'date':request.form['date'] })
 		   		status = db.session.commit()
 				flash("Event updated successfully.")
 				return redirect(url_for("admin_event"))
@@ -542,30 +562,43 @@ def admin_index(pagination=1):
 @app.route('/admin/post/edit/<slug>', methods = ['GET', 'POST'])
 @app.route('/admin/post/edit/<slug>/', methods = ['GET', 'POST'])
 @auth.login_required
+
 def admin_post_add(slug=""):
 	form = PostForm()
 	categories = [(c.id, c.name) for c in Category.query.order_by(Category.name).all()]
 	form.category_id.choices = categories
+	now = str(datetime.now())
+	now= now.replace(':',"",10).replace(' ','',4).replace('.','',5).replace('-','',5)
+		   		
 	if request.method == 'POST':
+		# filename=str(request.form['txt_temp_image'])
+		# print filename
 		try:
 			if form.validate() == False:
 		   		flash('Please try to fill form again.')
 		   		return redirect(url_for('admin_post_add'))
 		   	else:
 		   		obj=Post.query.filter_by(slug=slug)
+		   		
 		   		for post in obj:
 		   			old_images=post.images
-		   		now = str(datetime.now())
-				now= now.replace(':',"",10).replace(' ','',4).replace('.','',5).replace('-','',5)
 		   		result = request.form
-				filename=str(request.form['txt_temp_image'])
+				# filename=str(request.form['txt_temp_image'])
+				f = request.files['feature_image']
+				help_filename=secure_filename(f.filename)
+				filename=now+'-'+secure_filename(f.filename)
+				#upload feature image
+				# return secure_filename(f.filename)+">>>>>>>>>"
+				f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))				
+				images=''
 				# return filename
 				if not slug:
-		   			if file:
+		   			if not file:
 		   				images=''
 		   				help=1
 	   					uploaded_files = flask.request.files.getlist("other_image[]")
 		   				# return filename
+		   				images = ''
 		   				for f in uploaded_files:
 		   					imagename = secure_filename(f.filename)
 		   					if imagename!="":
@@ -575,19 +608,18 @@ def admin_post_add(slug=""):
 			   					else:
 			   						images=images+"$$$$$"+(now+"-"+imagename)
 			   					help=help+1
-			   			if(images[0:5]=='$$$$$'):
-				   			images=images[5:len(images)]
-		   				obj=Post(request.form['title'],request.form['description'],request.form['category_id'],filename,request.cookies.get('blog_id'),images,0)
-			        	status=Post.add(obj)
+			        	ob=Post(request.form['title'],request.form['description'],request.form.get('category_id'),filename,request.cookies.get('blog_id'),0,images)
+			        	status=Post.add(ob)
 				        if not status:
 				            flash("Post added successfully")
 				            return redirect(url_for('admin_index'))
 				        else:
 				        	flash("Fail to add post !")
 				        	return redirect(url_for('admin_post_add'))
+
 				elif slug:
 					# return str(request.form["image1"])
-		   			if not not file: 
+		   			if not file: 
 		   				images=''
 		   				help=1
 	   					uploaded_files = flask.request.files.getlist("other_image[]")
@@ -615,18 +647,25 @@ def admin_post_add(slug=""):
 				   		for item in arr_to_remove:
 				   			images=images.replace(item,'')
 				   		images=images.replace('$$$$$$$$$$','$$$$$')
+				   		# return images
 				   		#end keep old images
-				   		if(images[0:5]=='$$$$$'):
-				   			images=images[5:len(images)]
-	   					obj.update({"slug" : slugify(request.form['title']) , "title" : request.form['title'],'description':request.form['description'],"category_id":request.form['category_id'],'feature_image':filename,'images':images })
+				   		# return '1'+str(help_filename)+'1'
+				   		if help_filename!="":
+	   						obj.update({"slug" : slugify(request.form['title']) , "title" : request.form['title'],'description':request.form['description'],"category_id":request.form['category_id'],'feature_image':filename,'images':images })
+	   					else:
+	   						obj.update({"slug" : slugify(request.form['title']) , "title" : request.form['title'],'description':request.form['description'],"category_id":request.form['category_id'],'images':images })
+	   					
 	   					status = db.session.commit()
 		   				if not status:
 		   					flash("Post updated successfully")
 		   					return redirect(url_for('admin_index'))
 		   			for post in obj:
 		   				tempFileName=post.feature_image
-	   				filename=tempFileName
-	   				obj.update({"slug" : slugify(request.form['title']) , "title" : request.form['title'],'description':request.form['description'],'category_id':request.form['category_id'],'feature_image':filename })
+	   				if secure_filename(f.filename)!='':
+	   					obj.update({"slug" : slugify(request.form['title']) , "title" : request.form['title'],'description':request.form['description'],'category_id':request.form['category_id'],'feature_image':filename})
+	   				else:
+	   					obj.update({"slug" : slugify(request.form['title']) , "title" : request.form['title'],'description':request.form['description'],'category_id':request.form['category_id'] })
+	   				
 	   				status = db.session.commit()
 	   				if not status:
 	   					flash("Post updated was successfully")
@@ -643,6 +682,7 @@ def admin_post_add(slug=""):
 			return render_template('admin/form/post.html', post = post, form = form)
 		else:
 			return render_template('admin/form/post.html', form = form)
+
 @app.route('/admin/category', methods = ['GET', 'POST'])
 @app.route('/admin/category/', methods = ['GET', 'POST'])
 @app.route('/admin/category/add', methods = ['GET', 'POST'])

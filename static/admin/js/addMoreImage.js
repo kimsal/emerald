@@ -76,3 +76,5 @@ function loadImage(img_nom){
     }
     getAllRemoveImages();
   }
+
+

@@ -57,7 +57,7 @@ section {
   color: #dd9933;
 }
 .memberPos{
-  padding: 0px 30px;
+  padding: 0px 60px;
   font-weight: bold;
   font-size: 15px;
   margin-top: -15px !important;
@@ -323,7 +323,7 @@ a:hover{
 }
 .mytitle{
   font-weight: bold;
-  font-size: 20px !important;
+  font-size: 18px !important;
   color: #dd9933;
 }
 .singlePost{
@@ -356,8 +356,8 @@ a:hover{
   left: 0px !important;
 }
 p{
-  margin-top: 15px !important;
-  margin-bottom: 15px !important;
+  margin-top: 2px !important;
+  margin-bottom: 2px !important;
 }
 .eventBack{
   background-color: #f5f5f5 !important;
