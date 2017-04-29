@@ -1,6 +1,10 @@
 {% include '/admin/header.html' %} 
     <!-- END NAVIGATION -->
-
+<style type="text/css">
+  input[type="file"]{
+    display: none;
+  }
+</style>
     <!-- MAIN PANEL -->
     <div id="main" role="main">
 
@@ -90,33 +94,12 @@
                                   <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                      <div class="panel panel-body">
                                        <div class="span4 cropme" id="landscape" >
+                                       <input type="file" name="feature_image1" id="feature_image1"> <br/>
+                                          <img src="/static/images/no image.jpg" class="img-responsive img-feature-image1" style="cursor: pointer;width:280px;height:200px">
                                        </div>
                                     </div>
                                   </div>
                                 </div>
-                                <script>
-                                 // Init Simple Cropper
-                                $('.cropme').simpleCropper('feature_image','feature_image','txt_temp_image');
-                                $('#portrait').hide();
-                                $('.switch').click(function (){
-                                    $(this).text("Switch to "+($('#portrait').is(":visible") ? "Portrait" : "Landscape"));
-                                  $('#portrait').toggle();
-                                  $('#landscape').toggle();
-                                });    
-
-
-                                var _gaq = _gaq || [];
-                                _gaq.push(['_setAccount', 'UA-36251023-1']);
-                                _gaq.push(['_setDomainName', 'jqueryscript.net']);
-                                _gaq.push(['_trackPageview']);
-
-                                (function() {
-                                  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                                  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                                  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-                                })();
-
-                              </script>
 
 
 
@@ -128,33 +111,12 @@
                                   <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                      <div class="panel panel-body">
                                        <div class="span4 cropme" id="landscape2" style="">
+                                         <input type="file" name="feature_image2" id="feature_image2"> <br/>
+                                          <img src="/static/images/no image.jpg" class="img-responsive img-feature-image2" style="cursor: pointer;width:280px;height:200px""> 
                                        </div>
                                     </div>
                                   </div>
                                 </div>
-                                <script>
-                                 // Init Simple Cropper
-                                $('.cropme#landscape2').location2('feature_image2','feature_image2','txt_temp_image2');
-                                $('#portrait').hide();
-                                $('.switch').click(function (){
-                                    $(this).text("Switch to "+($('#portrait').is(":visible") ? "Portrait" : "Landscape"));
-                                  $('#portrait').toggle();
-                                  $('#landscape2').toggle();
-                                });    
-
-
-                                var _gaq = _gaq || [];
-                                _gaq.push(['_setAccount', 'UA-36251023-1']);
-                                _gaq.push(['_setDomainName', 'jqueryscript.net']);
-                                _gaq.push(['_trackPageview']);
-
-                                (function() {
-                                  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                                  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                                  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-                                })();
-
-                              </script>
                                 
                                 <!--end feature image-->
                                 <!-- Form actions -->
@@ -203,15 +165,10 @@
    $('#contact').append("{{location.contact.replace('\n', ' ').replace('\r',' ')}}"); 
    $('#frm').attr('action','/admin/location/edit/{{location.slug}}/');
    feature_image1="{{location.feature_image1}}"; 
-   $("#landscape").html('<img src="'+feature_image1+'"/>');
-     //alert(feature_image1);
-   $(".txt_temp_image").attr('value',feature_image1);
-
-
+   $(".img-feature-image1").attr('src',"/static/images/images/"+feature_image1);
    feature_image2="{{location.feature_image2}}";
-   $("#landscape2").html('<img src="'+feature_image2+'"/>');
-     //alert(feature_image1);
-   $(".txt_temp_image2").attr('value',feature_image2);
+   $(".img-feature-image2").attr('src',"/static/images/images/"+feature_image2);
+
 
  </script>
  
@@ -220,12 +177,49 @@
   if(feature_image1==''){
     feature_image1='/static/images/no image.jpg';
   }
-  $("#landscape").html('<img src="'+feature_image1+'" style="width:280px;height:200px"/> ');
+
 
   if(feature_image2==''){
     feature_image2='/static/images/no image.jpg';
   }
-  $("#landscape2").html('<img src="'+feature_image2+'" style="width:280px;height:200px"/> ');
 </script>
 
 {% include 'admin/footer.html' %} 
+
+
+<script type="text/javascript">
+  //feature image
+   function readURL2(input,i) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        // alert(i);
+        if(i==1){
+          reader.onload = function (e) {
+              $('.img-feature-image1').attr('src', e.target.result);
+          }
+        }
+        else{
+          reader.onload = function (e) {
+              $('.img-feature-image2').attr('src', e.target.result);
+          }
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+$('img.img-feature-image1').click(function(){
+    $('input#feature_image1').click();
+});
+$('img.img-feature-image2').click(function(){
+    $('input#feature_image2').click();
+});
+
+
+$('input#feature_image1').change(function(){
+    readURL2(this,1);
+});
+$('input#feature_image2').change(function(){
+    readURL2(this,2);
+});
+</script>

@@ -177,7 +177,7 @@
 		 {% for partner in partners %}
 		 <script type="text/javascript">
 		 	temp=moment().from("{{partner.published_at}}");
-		 	jqgrid_data.push({"name":"{{partner.name}}","url":"{{partner.url}}","image":"<img src='{{partner.feature_image}}' style='width:50px;'/>","published_at":temp,"action":"<a href='/admin/partner/delete/{{partner.slug}}' onclick='return confirm(\"Are you sure ?\")' class='btn btn-xs btn-default'><i class='fa fa-trash-o' style='color:red;'></i></a> <a href='/admin/partner/edit/{{partner.slug}}' class='btn btn-xs btn-default'><i class='fa fa-pencil'></i></a>"});
+		 	jqgrid_data.push({"name":"{{partner.name}}","url":"{{partner.url}}","image":"<img src='/static/images/images/{{partner.feature_image}}' style='width:50px;'/>","published_at":temp,"action":"<a href='/admin/partner/delete/{{partner.slug}}' onclick='return confirm(\"Are you sure ?\")' class='btn btn-xs btn-default'><i class='fa fa-trash-o' style='color:red;'></i></a> <a href='/admin/partner/edit/{{partner.slug}}' class='btn btn-xs btn-default'><i class='fa fa-pencil'></i></a>"});
 		 </script>
 		 {%endfor%}
 

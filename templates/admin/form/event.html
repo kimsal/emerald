@@ -165,23 +165,12 @@
         <div class="form-group">
           <center>
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-               <div class="span4 cropme" id="landscape" style="width:200px; height: 150px;">
-               </div>
-              </div>
+              <input type="file" name="feature_image" id="feature_image"> <br/>
+              <img src="/static/images/no image.jpg" class="img-responsive img-feature-image" style="cursor: pointer;"> 
+            </div>
           </center>
         </div>
-      <script>
-         // Init Simple Cropper
-        $('.cropme').simpleCropper('feature_image','feature_image','txt_temp_image');
-        $('#portrait').hide();
-        $('.switch').click(function (){
-            $(this).text("Switch to "+($('#portrait').is(":visible") ? "Portrait" : "Landscape"));
-          $('#portrait').toggle();
-          $('#landscape').toggle();
-        });    
-      </script>
-        <!--end feature image-->
+     
     </article>
 <!-- WIDGET END -->
     <article class="col-sm-9 col-md-9 col-lg-9">
@@ -270,7 +259,7 @@
   if(feature_image==''){
     feature_image='/static/images/no image.jpg';
    }
-   $("#landscape").html('<img src="'+feature_image+'" class="img-responsive feature-img"/> ');
+   $("#landscape").html('<img src="/static/images/images/'+feature_image+'" class="img-responsive feature-img"/> ');
 </script>
 <script type="text/javascript">
 
@@ -299,8 +288,7 @@ $(".btn-save").click(function(){
    // $(".feature_output").attr("src","/static/images/feature_images/{{event.feature_image}}");
    feature_image="{{event.feature_image}}";
    if(feature_image!=''){
-     $("#landscape").html('<img src="'+feature_image+'"/>');
-     //alert(feature_image);
+     $(".img-feature-image").attr('src','/static/images/images/'+feature_image);
    }
    $(".txt_temp_image").attr('value',feature_image);
   });
@@ -309,8 +297,31 @@ $(".btn-save").click(function(){
  
 {% endfor %}
 <script type="text/javascript">
+  $(document).ready(function(){
+    pageSetUp();
   if(feature_image==''){
     feature_image='/static/images/no image.jpg';
    }
-   $("#landscape").html('<img src="'+feature_image+'" style="width:280px;height:200px" class="img-responsive"/> ');
+   $("#landscape").html('<img src="/static/images/images/'+feature_image+' " style="width:280px;height:200px" class="img-responsive"/> ');
+  });
+  </script>
+
+<script type="text/javascript">
+  //feature image
+   function readURL1(input) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('.img-feature-image').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$('input#feature_image').change(function(){
+    readURL1(this);
+});
 </script>

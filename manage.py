@@ -1,3 +1,5 @@
+
+
 #!/usr/bin/env python
 from database import *
 import os.path as op
@@ -131,6 +133,7 @@ def logout():
 def admin_register():
 	form = UserMemberForm()
 	if request.method == 'POST':
+
 		user=UserMember(request.form['name'],request.form['email'],request.form['password'])
 		user.hash_password(request.form['password'])
 		try:
@@ -170,7 +173,18 @@ def admin_member(pagination=1,action='',slug=''):
 			return render_template("admin/form/member.html",form=form)
 		else:
 			#try:
-			filename=str(request.form['txt_temp_image'])
+			now = str(datetime.now())
+			now= now.replace(':',"",10).replace(' ','',4).replace('.','',5).replace('-','',5)
+
+			f = request.files['feature_image']
+			help_filename=secure_filename(f.filename)
+			filename=now+'-'+secure_filename(f.filename)
+			#upload feature image
+			# return secure_filename(f.filename)+">>>>>>>>>"
+			if help_filename!='':
+				f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))				
+			else:
+				filename=''
 			member = Member(request.form['name'],request.form['possition'],request.form['detail'],filename)
         	# return str('event')
         	status = Member.add(member)
@@ -190,7 +204,22 @@ def admin_member(pagination=1,action='',slug=''):
 			return render_template("admin/form/member.html",form=form,member_object=members)
 		else:
 			try:
-				members.update({"slug" : slugify(request.form['name']) , "name" : request.form['name'],'possition':request.form['possition'],'detail':request.form['detail'],'feature_image':request.form['txt_temp_image'] })
+				now = str(datetime.now())
+				now= now.replace(':',"",10).replace(' ','',4).replace('.','',5).replace('-','',5)
+
+				f = request.files['feature_image']
+				help_filename=secure_filename(f.filename)
+				filename=now+'-'+secure_filename(f.filename)
+				#upload feature image
+				# return secure_filename(f.filename)+">>>>>>>>>"
+				if help_filename!='':
+					f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))				
+				else:
+					filename=''
+				if filename!='':
+					members.update({"slug" : slugify(request.form['name']) , "name" : request.form['name'],'possition':request.form['possition'],'detail':request.form['detail'],'feature_image':filename })
+		   		else:
+		   			members.update({"slug" : slugify(request.form['name']) , "name" : request.form['name'],'possition':request.form['possition'],'detail':request.form['detail']})
 		   		status = db.session.commit()
 				flash("Member updated successfully.")
 				return redirect(url_for("admin_member"))
@@ -248,7 +277,7 @@ def admin_event(pagination=1,action='',slug=''):
 				f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 			else:
 				filename=''
-			event = Event(request.form['title'],request.form['description'],filename,request.cookies.get('blog_id'),0)
+			event = Event(request.form['title'],request.form['description'],request.form['date'],filename,request.cookies.get('blog_id'),0)
         	# return str('event')
         	status = Event.add(event)
 	        if not status:
@@ -425,6 +454,9 @@ def booking(type_submit=''):
 @auth.login_required
 def admin_location(pagination=1,action='',slug=''):
 	form = LocationForm()
+	now = str(datetime.now())
+	now= now.replace(':',"",10).replace(' ','',4).replace('.','',5).replace('-','',5)
+
 	if action=='add':
 		#add event
 		# return str(request.method)
@@ -432,8 +464,27 @@ def admin_location(pagination=1,action='',slug=''):
 			return render_template("admin/form/location.html",form=form)
 		else:
 			#try:
-			filename1=str(request.form['txt_temp_image'])
-			filename2=str(request.form['txt_temp_image2'])
+			# filename1=str(request.form['txt_temp_image'])
+			# filename2=str(request.form['txt_temp_image2'])
+			
+			f1 = request.files['feature_image1']
+			help_filename=secure_filename(f1.filename)
+			filename1=now+'-'+secure_filename(f1.filename)
+			#upload feature image
+			# return secure_filename(f.filename)+">>>>>>>>>"
+			if filename1!='':
+				f1.save(os.path.join(app.config['UPLOAD_FOLDER'], filename1))				
+			else:
+				filename1=''
+			f2 = request.files['feature_image2']
+			help_filename=secure_filename(f2.filename)
+			filename2=now+'-'+secure_filename(f2.filename)
+			#upload feature image
+			# return secure_filename(f.filename)+">>>>>>>>>"
+			if filename2!='':
+				f2.save(os.path.join(app.config['UPLOAD_FOLDER'], filename2))				
+			else:
+				filename2=''
 			location = Location(request.form['title'],request.form['address'],request.form['hour'],request.form['contact'],filename1,filename2,request.cookies.get('blog_id'))
         	# return str('event')
         	status = Location.add(location)
@@ -453,7 +504,32 @@ def admin_location(pagination=1,action='',slug=''):
 			return render_template("admin/form/location.html",form=form,location_object=locations)
 		else:
 			try:
-				locations.update({"slug" : slugify(request.form['title']) , "title" : request.form['title'],'address':request.form['address'],'hour':request.form['hour'],'contact':request.form['contact'],'feature_image1':request.form['txt_temp_image'],'feature_image2':request.form['txt_temp_image2'] })
+				f1 = request.files['feature_image1']
+				help_filename1=secure_filename(f1.filename)
+				filename1=now+'-'+secure_filename(f1.filename)
+				#upload feature image
+				# return secure_filename(f.filename)+">>>>>>>>>"
+				if help_filename1!='':
+					f1.save(os.path.join(app.config['UPLOAD_FOLDER'], filename1))				
+				else:
+					filename1=''
+				f2 = request.files['feature_image2']
+				help_filename2=secure_filename(f2.filename)
+				filename2=now+'-'+secure_filename(f2.filename)
+				#upload feature image
+				# return secure_filename(f.filename)+">>>>>>>>>"
+				if help_filename2!='':
+					f2.save(os.path.join(app.config['UPLOAD_FOLDER'], filename2))				
+				else:
+					filename2=''
+				if filename1=="" and filename2=="":
+					locations.update({"slug" : slugify(request.form['title']) , "title" : request.form['title'],'address':request.form['address'],'hour':request.form['hour'],'contact':request.form['contact'] })
+				elif filename1=='':
+					locations.update({"slug" : slugify(request.form['title']) , "title" : request.form['title'],'address':request.form['address'],'hour':request.form['hour'],'contact':request.form['contact'],'feature_image2':filename2 })
+		   		elif filename2=='':
+					locations.update({"slug" : slugify(request.form['title']) , "title" : request.form['title'],'address':request.form['address'],'hour':request.form['hour'],'contact':request.form['contact'],'feature_image1':filename1})
+		   		else:
+					locations.update({"slug" : slugify(request.form['title']) , "title" : request.form['title'],'address':request.form['address'],'hour':request.form['hour'],'contact':request.form['contact'],'feature_image1':filename1,'feature_image2':filename2 })
 		   		status = db.session.commit()
 				flash("Location updated successfully.")
 				return redirect(url_for("admin_location"))
@@ -492,16 +568,27 @@ def admin_location(pagination=1,action='',slug=''):
 @auth.login_required
 def admin_partner(pagination=1,action='',slug=''):
 	form = PartnerForm()
+	now = str(datetime.now())
+	now= now.replace(':',"",10).replace(' ','',4).replace('.','',5).replace('-','',5)
+	
 	if action=='add':
-		#add event
+		#add Partner
 		# return str(request.method)
 		if request.method == 'GET':
 			return render_template("admin/form/partner.html",form=form)
 		else:
 			#try:
-			filename=str(request.form['txt_temp_image'])
+			# filename=str(request.form['txt_temp_image'])
+			f = request.files['feature_image']
+			help = secure_filename(f.filename)
+			filename=now+'-'+secure_filename(f.filename)
+			#upload feature image
+			if help!='':
+				f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+			else:
+				filename=''
 			partner = Partner(request.form['name'],request.form['url'],filename)
-        	# return str('event')
+        	# return str('Partner')
         	status = Partner.add(partner)
 	        if not status:
 	            flash("Partner added was successfully")
@@ -511,15 +598,24 @@ def admin_partner(pagination=1,action='',slug=''):
 	       		return redirect(url_for('admin_partner'))
 		    # except Exception as e:
 		    # 	flask(e.message)
-		    # 	return redirect(url_for("admin_event"))
+		    # 	return redirect(url_for("admin_partner"))
 	elif action=='edit':
 		#return 'update'+ slug
 		partners=Partner.query.filter_by(slug=slug)
 		if request.method == 'GET':
-			return render_template("admin/form/partner.html",form=form,partner_object=partners)
+			return render_template("admin/form/partner.html",form=form,partners=partners)
 		else:
 			try:
-				partners.update({"slug" : slugify(request.form['name']) , "name" : request.form['name'],'url':request.form['url'],'feature_image':request.form['txt_temp_image'] })
+				f = request.files['feature_image']
+				help = secure_filename(f.filename)
+				filename=now+'-'+secure_filename(f.filename)
+				#upload feature image
+				if help=="":
+					partners.update({"slug" : slugify(request.form['name']) , "name" : request.form['name'],'url':request.form['url']})
+				else:
+					f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+					partners.update({"slug" : slugify(request.form['name']) , "name" : request.form['name'],'url':request.form['url'],'feature_image':filename })
 		   		status = db.session.commit()
 				flash("Partner updated successfully.")
 				return redirect(url_for("admin_partner"))
@@ -531,7 +627,7 @@ def admin_partner(pagination=1,action='',slug=''):
 		try:
 			partner=Partner.query.filter_by(slug=slug).first()
 			status = Partner.delete(partner)
-			flash('Partner deleted successfully.')
+			flash('Deleted successful.')
 			return redirect(url_for('admin_partner'))
 		except Exception as e:
 			flash('Fail to delete partner. '+ e.message)
@@ -542,6 +638,59 @@ def admin_partner(pagination=1,action='',slug=''):
 		if((Partner.query.count())%limit != 0 ):
 			pagin=int(pagin+1)
 		return render_template("admin/partner.html",current_pagin=int(pagination),partners=partners,pagin=int(pagin))
+
+# def admin_partner(pagination=1,action='',slug=''):
+# 	form = PartnerForm()
+# 	if action=='add':
+# 		#add event
+# 		# return str(request.method)
+# 		if request.method == 'GET':
+# 			return render_template("admin/form/partner.html",form=form)
+# 		else:
+# 			#try:
+# 			filename=str(request.form['txt_temp_image'])
+# 			partner = Partner(request.form['name'],request.form['url'],filename)
+#         	# return str('event')
+#         	status = Partner.add(partner)
+# 	        if not status:
+# 	            flash("Partner added was successfully")
+# 	            return redirect(url_for('admin_partner'))
+# 	       	else:
+# 	       		flash("Fail to add partner !")
+# 	       		return redirect(url_for('admin_partner'))
+# 		    # except Exception as e:
+# 		    # 	flask(e.message)
+# 		    # 	return redirect(url_for("admin_event"))
+# 	elif action=='edit':
+# 		#return 'update'+ slug
+# 		partners=Partner.query.filter_by(slug=slug)
+# 		if request.method == 'GET':
+# 			return render_template("admin/form/partner.html",form=form,partner_object=partners)
+# 		else:
+# 			try:
+# 				partners.update({"slug" : slugify(request.form['name']) , "name" : request.form['name'],'url':request.form['url'],'feature_image':request.form['txt_temp_image'] })
+# 		   		status = db.session.commit()
+# 				flash("Partner updated successfully.")
+# 				return redirect(url_for("admin_partner"))
+# 			except Exception as e:
+# 				flash(e.message)
+# 				return redirect(url_for("admin_partner"))
+# 	elif action=='delete':
+# 		# return action+"...."
+# 		try:
+# 			partner=Partner.query.filter_by(slug=slug).first()
+# 			status = Partner.delete(partner)
+# 			flash('Partner deleted successfully.')
+# 			return redirect(url_for('admin_partner'))
+# 		except Exception as e:
+# 			flash('Fail to delete partner. '+ e.message)
+# 			return redirect(url_for('admin_partner'))
+# 	else:
+# 		partners=Partner.query.order_by(Partner.id.desc()).limit(limit).offset(int(int(int(pagination)-1)*limit))
+# 		pagin=math.ceil((Partner.query.count())/limit)
+# 		if((Partner.query.count())%limit != 0 ):
+# 			pagin=int(pagin+1)
+# 		return render_template("admin/partner.html",current_pagin=int(pagination),partners=partners,pagin=int(pagin))
 
 ############ End Partner ##########
 @app.route('/admin')
@@ -589,7 +738,10 @@ def admin_post_add(slug=""):
 				filename=now+'-'+secure_filename(f.filename)
 				#upload feature image
 				# return secure_filename(f.filename)+">>>>>>>>>"
-				f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))				
+				if help_filename!='':
+					f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))				
+				else:
+					filename=''
 				images=''
 				# return filename
 				if not slug:

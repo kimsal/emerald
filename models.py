@@ -352,6 +352,8 @@ class Event(db.Model):
             feature_image=self.feature_image
             )
     def __init__(self,title,description,date,feature_image,user_id,views=0):
+       # title,description,filename,request.blog_id
+            
         self.title = title,
         self.slug = slugify(title),
         self.description = description,
