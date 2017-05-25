@@ -100,7 +100,7 @@
           </div>
         </div>
 <!-- END RIBBON -->
-  <form class="form-horizontal" action="/admin/partner/add/" method="POST" id="frm" enctype="multipart/form-data">
+  <form class="form-horizontal" action="/admin/partner/add/" method="POST" id="frm_partner" enctype="multipart/form-data">
   {{ form.hidden_tag() }}
   <textarea name="description" id="description" style="display:none;"></textarea> 
   <input type="text" value="" name="all_removed_images" style="display:none;" />
@@ -186,6 +186,7 @@
 <script type="text/javascript">
   $(document).ready(function(){
      pageSetUp();
+     $('form#frm_partner').attr('action',"/admin/partner/edit/{{partner.slug}}");
      $('input#name').attr('value',"{{partner.name|safe}}"); 
      var help="{{partner.url}}";
      $('#url').attr('value',"{{partner.url}}"); 
