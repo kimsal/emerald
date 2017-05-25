@@ -44,6 +44,9 @@
 		    	</div>
 		    	</a>
 		</div>
+		{%if loop.index%3==0%}
+		<div class="clearfix"></div>
+		{%endif%}
 		{%endfor%}	
 	</div>
 </section>
@@ -98,6 +101,9 @@
 		    	</div>
 		    	</a>
 			</div>
+			{%if loop.index%3==0%}
+			<div class="clearfix"></div>
+			{%endif%}
 			{%endfor%}
 		</div>
 	</div>
@@ -155,6 +161,9 @@
 		<div class="hidden-xs col-md-3 indexBack">
 			<img src="/static/images/images/{{partner.feature_image}}" class="img-responsive">
 		</div>
+		{%if loop.index%4==0%}
+		<div class="clearfix"></div>
+		{%endif%}
 	{%endfor%}
 	</div>
 </div>
